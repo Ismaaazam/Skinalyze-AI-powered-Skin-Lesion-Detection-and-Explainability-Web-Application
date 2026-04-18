@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!dropzone) return;   // not on upload page
 
+
+
     /* ── Show preview ───────────────────────────────── */
     function showPreview(file) {
         if (!file || !file.type.startsWith("image/")) return;
