@@ -1,0 +1,46 @@
+/* ?? Add this block to your existing site.css ??????????????????
+   Chatbot nav link style
+   ???????????????????????????????????????????????????????????? */
+
+/* Import Sora font for brand/headings */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700&display=swap');
+/* ?? NAVBAR FIX PATCH — add to site.css ?? */
+
+/* Remove any top gap that pushes content away from the navbar */
+.page {
+    margin-top: 0 !important;
+    padding-top: 20px;
+}
+
+/* Ensure app-wrapper starts flush under the navbar */
+.app-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.nav-chatbot-link {
+    background: #0D5F4A !important;
+    color: #ffffff !important;
+    border-radius: 8px;
+    padding: 7px 16px !important;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s, transform 0.15s;
+    margin-left: 4px;
+}
+
+    .nav-chatbot-link:hover {
+        background: #0a4a39 !important;
+        color: #ffffff !important;
+        transform: translateY(-1px);
+    }
+
+    .nav-chatbot-link svg {
+        stroke: #ffffff;
+    }
+
+/* Active state — highlight current page */
+.nav-link.active {
+    color: #0D5F4A !important;
+    font-weight: 600;
+}

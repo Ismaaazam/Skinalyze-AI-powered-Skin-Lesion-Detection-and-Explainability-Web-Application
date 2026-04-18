@@ -1,0 +1,206 @@
+﻿/* ============================================================
+   Home.css  —  Skinalyze
+   Matches the reference screenshot exactly
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Hero wrapper ───────────────────────────────────────────── */
+.home-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: calc(100vh - 68px);
+    padding: 0 80px;
+    gap: 60px;
+    background: #ffffff;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ── Left column ────────────────────────────────────────────── */
+.hero-left {
+    flex: 0 0 auto;
+    max-width: 480px;
+}
+
+.hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0D5F4A;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 16px 0;
+}
+
+.hero-heading {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.12;
+    color: #0a1a14;
+    margin: 0 0 22px 0;
+    letter-spacing: -0.02em;
+}
+
+    /* The italic "dermatology" word — matches screenshot font style */
+    .hero-heading em {
+        font-family: 'DM Serif Display', serif;
+        font-style: italic;
+        font-weight: 400;
+        color: #0a1a14;
+    }
+
+.hero-body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: #4a5a55;
+    margin: 0 0 36px 0;
+    max-width: 400px;
+}
+
+/* CTA button */
+.hero-cta {
+    display: inline-block;
+    background: #0D5F4A;
+    color: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 50px; /* pill shape — matches screenshot */
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    margin-bottom: 28px;
+}
+
+    .hero-cta:hover {
+        background: #0a4a39;
+        color: #ffffff;
+        text-decoration: none;
+        transform: translateY(-1px);
+    }
+
+/* Stars + review line */
+.hero-reviews {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stars {
+    color: #f5a623;
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+
+.review-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #6b7e7a;
+}
+
+/* ── Right column — 2×2 grid ────────────────────────────────── */
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.img-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 580px;
+    /* slight upward offset so grid aligns with heading visually */
+    margin-top: 20px;
+}
+
+.img-cell {
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 1 / 0.85;
+    position: relative;
+}
+
+    .img-cell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+/* Top-left cell — light sage background (as in screenshot) */
+.cell-tl {
+    background: #d8ece5;
+    padding: 6px;
+    border-radius: 16px;
+}
+
+/* Top-right cell — plain white border */
+.cell-tr {
+    border: 1.5px solid #e2ede9;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Bottom-left cell — plain, no border */
+.cell-bl {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Bottom-right cell — dark green background (matches screenshot) */
+.cell-br {
+    background: #0D5F4A;
+    padding: 6px;
+    border-radius: 16px;
+}
+
+    .cell-tl img,
+    .cell-br img {
+        border-radius: 10px;
+    }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .home-hero {
+        padding: 40px 40px;
+        gap: 40px;
+    }
+
+    .hero-heading {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-hero {
+        flex-direction: column;
+        padding: 40px 24px 60px;
+        min-height: auto;
+    }
+
+    .hero-left {
+        max-width: 100%;
+    }
+
+    .hero-heading {
+        font-size: 32px;
+    }
+
+    .hero-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .img-grid {
+        max-width: 100%;
+    }
+}

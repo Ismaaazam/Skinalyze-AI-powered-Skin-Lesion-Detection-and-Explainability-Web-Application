@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Chatbot";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/Chatbot.css" />
+}
+<div class="chatbot-fullpage-wrapper">
+    <div class="chat-panel fullpage" id="chatPanel" aria-hidden="false">
+        <!-- Header -->
+        <div class="chat-header">
+            <div class="chat-avatar">DA</div>
+            <div class="chat-title">
+                <h4>Doctor Asklepios.ai</h4>
+                <span class="chat-subtitle">GPT-6 &middot; 218 LLMs &middot; 118 left this month</span>
+            </div>
+        </div>
+        <!-- Body -->
+        <div class="chat-body" id="chatBody">
+            <div class="bubble bot">
+                <strong>Hello! I'm Doctor Asklepios 👋</strong><br />
+                I can help you analyze skin lesions, answer dermatology questions, and guide you through your results. How can I assist you today?
+            </div>
+        </div>
+        <!-- Footer — sticky at bottom -->
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Send your message to Doctor Asklepios..." />
+            <button id="sendChat">Send</button>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/Chatbot.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            initChatbot("fullpage");
+        });
+    </script>
+}

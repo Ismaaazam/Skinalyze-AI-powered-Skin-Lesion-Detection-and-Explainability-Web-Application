@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Skinalyze</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/Chatbot.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+    @await RenderSectionAsync("Styles", required: false)
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'DM Sans', sans-serif;
+            background: #ffffff;
+        }
+
+        main {
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        /* ── Navbar ─────────────────────────────────────────────── */
+        .sk-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Brand — far left */
+        .sk-brand {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0a1a14;
+            text-decoration: none;
+            letter-spacing: -0.4px;
+            flex-shrink: 0;
+        }
+
+            .sk-brand:hover {
+                color: #0a1a14;
+                text-decoration: none;
+            }
+
+        /* Center nav links */
+        .sk-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+            .sk-nav-links a {
+                font-family: 'DM Sans', sans-serif;
+                font-size: 15px;
+                font-weight: 400;
+                color: #1a1a2e;
+                text-decoration: none;
+                transition: color 0.15s;
+            }
+
+                .sk-nav-links a:hover {
+                    color: #0D5F4A;
+                }
+
+        /* Active state — highlight current page */
+        .nav-link.active {
+            color: #0D5F4A !important;
+            font-weight: 600;
+        }
+
+        /* Mobile toggler */
+        .sk-toggler {
+            display: none;
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #1a1a2e;
+        }
+
+        @@media (max-width: 768px) {
+            .sk-navbar {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 14px 20px;
+                position: sticky;
+                top: 0;
+            }
+
+            .sk-nav-links {
+                display: none;
+                position: static;
+                transform: none;
+                flex-direction: column;
+                gap: 16px;
+                width: 100%;
+                padding: 16px 0 8px;
+                border-top: 1px solid #f0f0f0;
+                margin-top: 12px;
+            }
+
+                .sk-nav-links.open {
+                    display: flex;
+                }
+
+            .sk-toggler {
+                display: block;
+            }
+        }
+
+        .single-column-content {
+            max-width: 1500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sk-navbar">
+        <a class="sk-brand" asp-area="" asp-controller="Home" asp-action="Index">Skinalyze</a>
+
+        <ul class="sk-nav-links" id="skNav">
+            <li><a asp-controller="Home" asp-action="Upload">Upload image</a></li>
+            <li><a asp-controller="Chatbot" asp-action="Index">Chatbot</a></li>
+            <li><a asp-controller="Home" asp-action="Privacy">Contacts</a></li>
+            <li><a asp-controller="Home" asp-action="Privacy">Insight</a></li>
+        </ul>
+
+        <button class="sk-toggler" onclick="document.getElementById('skNav').classList.toggle('open')">&#9776;</button>
+    </nav>
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/Chatbot.js"></script>
+</body>
+</html>

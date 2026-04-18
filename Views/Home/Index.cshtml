@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Home.css" asp-append-version="true" />
+}
+
+<div class="home-hero">
+
+    <!-- LEFT COLUMN -->
+    <div class="hero-left">
+        <p class="hero-eyebrow">TRY IT NOW!</p>
+
+        <h1 class="hero-heading">
+            Change the way you approach <em>dermatology</em>
+        </h1>
+
+        <p class="hero-body">
+            An AI-powered skin lesion detection system that delivers instant
+            deep-learning insights, RAG-based medical guidance, and
+            downloadable professional reports
+        </p>
+
+        <a class="hero-cta" asp-controller="Home" asp-action="Upload">
+            Get Started Now &rarr;
+        </a>
+
+        
+    </div>
+
+    <!-- RIGHT COLUMN — 2×2 image grid -->
+    <div class="hero-right">
+        <div class="img-grid">
+            <div class="img-cell cell-tl">
+                <img src="~/images/medic_02.jpg" alt="Skin condition close-up" />
+            </div>
+            <div class="img-cell cell-tr">
+                <img src="~/images/medic_03.jpg" alt="Dermatoscopy" />
+            </div>
+            <div class="img-cell cell-bl">
+                <img src="~/images/medic_05.jpg" alt="Microscopy cells" />
+            </div>
+            <div class="img-cell cell-br">
+                <img src="~/images/medic_04.jpg" alt="Skin texture" />
+            </div>
+        </div>
+    </div>
+
+</div>

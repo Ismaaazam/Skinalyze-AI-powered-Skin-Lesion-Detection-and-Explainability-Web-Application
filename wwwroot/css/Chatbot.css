@@ -1,0 +1,345 @@
+﻿/* ============================================================
+   Chatbot.css  —  Skinalyze
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Sora:wght@600;700&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────── */
+:root {
+    --chat-green: #0D5F4A;
+    --chat-green-light: #eaf5ef;
+    --chat-green-mid: #e8f3ef;
+    --chat-border: #eaeaea;
+    --chat-bg: #f7f8fa;
+    --chat-white: #ffffff;
+    --chat-text: #1a1a2e;
+    --chat-sub: #7a8a8e;
+    --chat-shadow: rgba(0, 0, 0, 0.08);
+    --panel-width: 420px;
+    --transition: 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   1.  APP WRAPPER  (Upload page split layout)
+   ══════════════════════════════════════════════════════════════ */
+.app-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+    .app-wrapper .page {
+        flex: 1;
+        width: 100%;
+        transition: width var(--transition);
+    }
+
+/* ══════════════════════════════════════════════════════════════
+   2.  CHAT PANEL  — MODAL OVERLAY STYLE (Upload page)
+   ══════════════════════════════════════════════════════════════ */
+/* Improved Modal Chatbot */
+.chat-panel.modal-chat {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: var(--panel-width);
+    max-height: calc(100vh - 80px);
+    background: var(--chat-white);
+    border-radius: 24px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.22), 0 8px 30px rgba(13, 95, 74, 0.12);
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    border: 1px solid var(--chat-border);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition);
+    margin: 0; /* Important: no edge touching */
+}
+
+.app-wrapper.is-split .chat-panel.modal-chat {
+    animation: popIn 0.35s ease;
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Make sure it never touches screen edges */
+@media (max-width: 768px) {
+    .chat-panel.modal-chat {
+        padding: 0;
+        margin: 20px; /* ensures gap from screen edges */
+    }
+}
+.app-wrapper.is-split::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    backdrop-filter: blur(4px);
+    z-index: 9998;
+}
+/* Slide in + fade in when active */
+.app-wrapper.is-split .chat-panel {
+    right: 24px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   3.  FULL-PAGE MODE  (Chatbot/Index)
+   ══════════════════════════════════════════════════════════════ */
+.chat-panel.fullpage {
+    /* override the overlay positioning entirely */
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+    margin-right: 0 !important;
+    width: 100%;
+    max-width: 680px;
+    /* KEY FIX: fixed height so flex children can be sticky */
+    height: calc(100vh - 90px);
+    max-height: calc(100vh - 90px);
+    margin: 0 auto;
+    box-shadow: 0 4px 40px rgba(13, 95, 74, 0.10);
+    border: 1px solid var(--chat-border);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   4.  CHAT HEADER
+   ══════════════════════════════════════════════════════════════ */
+.chat-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--chat-border);
+    background: var(--chat-white);
+    flex-shrink: 0; /* never shrink — stays at top */
+    border-radius: 20px 20px 0 0;
+}
+
+.chat-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--chat-green-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--chat-green);
+    flex-shrink: 0;
+}
+
+.chat-title {
+    flex: 1;
+}
+
+    .chat-title h4 {
+        margin: 0 0 2px 0;
+        font-family: 'Sora', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--chat-text);
+    }
+
+.chat-subtitle {
+    font-size: 12px;
+    color: var(--chat-sub);
+}
+
+.close-chat-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--chat-sub);
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+    .close-chat-btn:hover {
+        background: var(--chat-green-light);
+        color: var(--chat-green);
+    }
+
+/* ══════════════════════════════════════════════════════════════
+   5.  CHAT BODY  — scrollable middle
+   ══════════════════════════════════════════════════════════════ */
+.chat-body {
+    flex: 1; /* takes all remaining space */
+    min-height: 0; /* critical: allows shrinking so footer stays visible */
+    padding: 20px 16px;
+    overflow-y: auto;
+    background: var(--chat-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+}
+
+/* ── Message bubbles ── */
+.bubble {
+    max-width: 78%;
+    padding: 12px 15px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+    animation: bubbleIn 0.25s ease both;
+}
+
+    .bubble.bot {
+        background: var(--chat-green-light);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        color: var(--chat-text);
+    }
+
+    .bubble.user {
+        background: var(--chat-green);
+        color: #ffffff;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+
+    .bubble.timer-chip {
+        background: var(--chat-green);
+        color: #fff;
+        align-self: flex-end;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 18px;
+        border-radius: 22px;
+    }
+
+    .bubble.typing {
+        background: var(--chat-green-light);
+        align-self: flex-start;
+        color: var(--chat-sub);
+        font-style: italic;
+        font-size: 13px;
+    }
+
+@keyframes bubbleIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   6.  CHAT FOOTER  — sticky at bottom, never scrolls away
+   ══════════════════════════════════════════════════════════════ */
+.chat-footer {
+    padding: 14px 16px;
+    border-top: 1px solid var(--chat-border);
+    display: flex;
+    gap: 10px;
+    background: var(--chat-white);
+    flex-shrink: 0; /* never shrink — stays at bottom */
+    border-radius: 0 0 20px 20px;
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+}
+
+    .chat-footer input {
+        flex: 1;
+        padding: 11px 14px;
+        border-radius: 10px;
+        border: 1.5px solid var(--chat-border);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+        color: var(--chat-text);
+        background: var(--chat-bg);
+    }
+
+        .chat-footer input:focus {
+            border-color: var(--chat-green);
+            background: var(--chat-white);
+        }
+
+    .chat-footer button {
+        padding: 11px 22px;
+        border-radius: 10px;
+        border: none;
+        background: var(--chat-green);
+        color: #ffffff;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+        .chat-footer button:hover {
+            background: #0a4a39;
+        }
+
+        .chat-footer button:active {
+            transform: scale(0.97);
+        }
+
+/* ══════════════════════════════════════════════════════════════
+   7.  FULL-PAGE WRAPPER
+   ══════════════════════════════════════════════════════════════ */
+.chatbot-fullpage-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px 20px 40px;
+    min-height: calc(100vh - 70px);
+    background: linear-gradient(135deg, #f0faf6 0%, #e8f3ef 40%, #f7f8fa 100%);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   8.  RESPONSIVE
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    :root {
+        --panel-width: calc(100vw - 32px);
+    }
+
+    .app-wrapper.is-split .chat-panel {
+        right: 16px;
+    }
+
+    .chat-panel.fullpage {
+        border-radius: 0;
+        height: calc(100vh - 60px);
+    }
+}
