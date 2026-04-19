@@ -1,0 +1,73 @@
+﻿@model Skinalyze.ViewModels.ReportViewModel
+
+<div class="container mt-5">
+
+    <h2 class="fw-bold">
+        Patient Information
+    </h2>
+
+    <form asp-action="GeneratePdf"
+          method="post" target="_blankl" id="reportForm">
+
+        <div class="mb-3">
+            <label>First Name</label>
+            <input asp-for="FirstName"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label>Last Name</label>
+            <input asp-for="LastName"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label>Age</label>
+            <input asp-for="Age"
+                   type="number"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label>Occupation</label>
+            <input asp-for="Occupation"
+                   class="form-control"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label>Family Disease History</label>
+            <input asp-for="FamilyHistory"
+                   class="form-control"
+                   required />
+        </div>
+
+        <button type="submit"
+                class="btn btn-success">
+
+            Generate PDF
+
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+    document.getElementById("reportForm")
+        .addEventListener("submit", function () {
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "/Home/ThankYou";
+
+            }, 1000);
+
+        });
+
+</script>

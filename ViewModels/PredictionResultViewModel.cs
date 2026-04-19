@@ -15,5 +15,7 @@
         public string? Recommendation { get; set; }
 
         public string? Heatmap { get; set; }
+
+        public string? UploadedImagePath { get; set; }
     }
 }

@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Thank You";
+}
+
+<style>
+
+    .thankyou-container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .project-title {
+        font-size: 36px;
+        font-weight: bold;
+        color: #198754;
+    }
+
+    .sub-title {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+
+    .redirect-text {
+        margin-top: 20px;
+        font-size: 16px;
+        color: gray;
+    }
+
+    .creators {
+        position: absolute;
+        bottom: 20px;
+        right: 30px;
+        text-align: right;
+        font-size: 14px;
+    }
+
+</style>
+
+
+<div class="thankyou-container">
+
+    <div class="project-title">
+        Skinalyze
+    </div>
+
+    <div class="sub-title">
+        Skin Lesion Detection System
+    </div>
+
+    <h3 class="mt-4">
+        Thank you for using our system!
+    </h3>
+
+    <p class="redirect-text">
+        Redirecting to Home page...
+    </p>
+
+</div>
+
+
+<div class="creators">
+
+    <strong>Created by:</strong><br>
+
+    Obaid ur Rehman<br>
+    Ismaa Azam<br>
+    Aliyan Khan
+
+</div>
+
+
+<script>
+
+    setTimeout(function () {
+
+        window.location.href =
+            "/Home/Index";
+
+    }, 4000);
+
+</script>

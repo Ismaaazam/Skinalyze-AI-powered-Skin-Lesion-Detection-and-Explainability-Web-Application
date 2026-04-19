@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using QuestPDF.Fluent;
 using Skinalyze.ViewModels;
 using System.Net.Http.Headers;
 
@@ -81,7 +82,97 @@ namespace Skinalyze.Controllers
                 }
             }
 
+            var uploadsFolder =
+                Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot/uploads"
+    );
+
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            var uniqueFileName =
+                Guid.NewGuid().ToString()
+                + "_"
+                + model.ImageFile.FileName;
+
+            var filePath =
+                Path.Combine(
+                    uploadsFolder,
+                    uniqueFileName
+                );
+
+            using (var fileStream =
+                   new FileStream(filePath,
+                   FileMode.Create))
+            {
+                await model.ImageFile.CopyToAsync(fileStream);
+            }
+
+            model.UploadedImagePath =
+                "/uploads/" + uniqueFileName;
+
             return View(model);
+        }
+
+        public IActionResult ReportForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult GeneratePdf(ReportViewModel model)
+        {
+            var pdfBytes =
+                Document.Create(container =>
+                {
+                    container.Page(page =>
+                    {
+                        page.Margin(30);
+
+                        page.Content()
+                            .Column(col =>
+                            {
+                                col.Item().Text(
+                                    "Skinalyze Report")
+                                    .FontSize(20)
+                                    .Bold();
+
+                                col.Item().Text(
+                                    "Created by an AI Skin Lesion Detection Model");
+
+                                col.Item().PaddingTop(10);
+
+                                col.Item().Text(
+                                    $"Name: {model.FirstName} {model.LastName}");
+
+                                col.Item().Text(
+                                    $"Age: {model.Age}");
+
+                                col.Item().Text(
+                                    $"Occupation: {model.Occupation}");
+
+                                col.Item().Text(
+                                    $"Family History: {model.FamilyHistory}");
+                            });
+                    });
+
+                }).GeneratePdf();
+
+
+            TempData["ShowThankYou"] = true;
+
+            return File(
+                pdfBytes,
+                "application/pdf",
+                "Skinalyze_Report.pdf");
+        }
+
+        public IActionResult ThankYou()
+        {
+            return View();
         }
     }
 }
