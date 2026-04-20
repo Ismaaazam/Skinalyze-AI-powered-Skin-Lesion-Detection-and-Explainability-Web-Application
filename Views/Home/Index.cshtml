@@ -8,7 +8,7 @@
 }
 
 <div class="home-hero">
-
+    <canvas id="dnaBgCanvas" aria-hidden="true"></canvas>
     <!-- LEFT COLUMN -->
     <div class="hero-left">
         <p class="hero-eyebrow">TRY IT NOW!</p>
@@ -49,3 +49,7 @@
     </div>
 
 </div>
+
+@section Scripts {
+    <script src="~/js/dna-bg.js" asp-append-version="true"></script>
+}

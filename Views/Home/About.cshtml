@@ -1,0 +1,293 @@
+﻿@{
+    ViewData["Title"] = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/About.css" asp-append-version="true" />
+}
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════════ -->
+<section class="about-hero">
+    <div class="about-hero-inner">
+        <div class="about-hero-text">
+            <span class="about-eyebrow">About Skinalyze</span>
+            <h1 class="about-title">AI-Powered Skin Lesion Detection, Built for the Real World</h1>
+            <p class="about-lead">
+                Skinalyze is an explainable deep-learning web application that gives you instant,
+                trustworthy insights into skin lesions — complete with heatmap visualisations,
+                medical guidance, and downloadable diagnostic reports.
+            </p>
+            <a class="about-cta" asp-controller="Home" asp-action="Upload">Try it Now &rarr;</a>
+        </div>
+        <div class="about-hero-img">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&q=80"
+                 alt="Doctor reviewing medical scan on tablet" />
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     STATS STRIP
+     ═══════════════════════════════════════════════ -->
+<section class="about-stats">
+    <div class="stat-item">
+        <span class="stat-number">1 in 3</span>
+        <span class="stat-label">cancers diagnosed globally is a skin cancer (WHO)</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <span class="stat-number">85–94%</span>
+        <span class="stat-label">accuracy of our deep-learning models on benchmark datasets</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <span class="stat-number">Instant</span>
+        <span class="stat-label">AI analysis with explainable Grad-CAM heatmaps</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+        <span class="stat-number">Free</span>
+        <span class="stat-label">web-based access — no specialist required on your end</span>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     THE PROBLEM
+     ═══════════════════════════════════════════════ -->
+<section class="about-section about-problem">
+    <div class="about-section-inner reverse">
+        <div class="about-section-img">
+            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f3?w=640&q=80"
+                 alt="Dermatoscopy examination" />
+        </div>
+        <div class="about-section-text">
+            <span class="section-tag tag-pink">The Challenge</span>
+            <h2>Skin Cancer Diagnosis Has a Reach Problem</h2>
+            <p>
+                Accurate diagnosis of skin lesions today depends almost entirely on trained
+                dermatologists — and they are in short supply, particularly in rural and
+                low-resource settings. The result? Patients wait. Lesions progress.
+                Survival rates fall.
+            </p>
+            <p>
+                Existing AI models do exist, but they tend to act as black boxes, offering
+                predictions without explanation. Doctors can't trust what they can't understand,
+                and patients deserve more than a single probability score.
+            </p>
+            <ul class="about-list">
+                <li>Limited specialist availability in underserved areas</li>
+                <li>AI models lack transparency — low clinician trust</li>
+                <li>Rare lesion types underrepresented in training data</li>
+                <li>Most tools need high computing power, blocking real-world use</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     HOW IT WORKS
+     ═══════════════════════════════════════════════ -->
+<section class="about-section about-how">
+    <div class="about-section-inner">
+        <div class="about-section-text">
+            <span class="section-tag tag-green">How It Works</span>
+            <h2>Upload. Analyse. Understand.</h2>
+            <p>
+                Skinalyze is designed around you — the patient or clinician — not the algorithm.
+                Three steps is all it takes to get a professional-grade diagnostic overview.
+            </p>
+        </div>
+        <div class="about-section-img">
+            <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=640&q=80"
+                 alt="Medical professional using laptop for diagnosis" />
+        </div>
+    </div>
+
+    <div class="steps-grid">
+        <div class="step-card">
+            <div class="step-icon" style="background:#eaf5ef; color:#0D5F4A;">01</div>
+            <h3>Upload Your Image</h3>
+            <p>Take a clear, close-up photo of the lesion and upload it directly through our secure web interface. No account needed.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-icon" style="background:#f0ebff; color:#4B3FA0;">02</div>
+            <h3>AI Analysis</h3>
+            <p>Our deep-learning models (EfficientNet, MobileNetV2, ViT) analyse the image in seconds, classifying the lesion type with confidence scores.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-icon" style="background:#fde8ef; color:#D6186A;">03</div>
+            <h3>Explainable Results</h3>
+            <p>Receive a Grad-CAM heatmap showing exactly which regions the AI focused on, plus a severity rating, description, and medical guidance.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-icon" style="background:#fce8ef; color:#850E35;">04</div>
+            <h3>Download Your Report</h3>
+            <p>Generate and download a professional diagnostic report to share with your dermatologist or keep for your records.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FEATURES
+     ═══════════════════════════════════════════════ -->
+<section class="about-features">
+    <div class="about-features-inner">
+        <div class="features-header">
+            <span class="section-tag tag-purple">Features</span>
+            <h2>Everything You Need in One Place</h2>
+            <p>Built for patients seeking early answers and clinicians needing decision support.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="border-color:#0D5F4A; color:#0D5F4A;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" /></svg>
+                </div>
+                <h3>Real-Time Detection</h3>
+                <p>Instant classification of skin lesions using state-of-the-art CNN and Vision Transformer models trained on dermatological datasets.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="border-color:#4B3FA0; color:#4B3FA0;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg>
+                </div>
+                <h3>Grad-CAM Explainability</h3>
+                <p>Visual heatmaps highlight the exact regions of the image that influenced the AI's decision — transparent, trustworthy, and clinician-friendly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="border-color:#D6186A; color:#D6186A;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+                </div>
+                <h3>AI Chatbot (Doctor Asklepios)</h3>
+                <p>Ask follow-up questions, get medication suggestions, and understand your results through an AI-powered medical chatbot available 24/7.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="border-color:#850E35; color:#850E35;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+                </div>
+                <h3>Downloadable Reports</h3>
+                <p>Export a complete diagnostic report including prediction, confidence score, severity level, and Grad-CAM visualisation — ready to share with your doctor.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="border-color:#0D5F4A; color:#0D5F4A;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></svg>
+                </div>
+                <h3>Severity &amp; Guidance</h3>
+                <p>Alongside the classification, receive a severity rating and actionable medical guidance — including when to seek urgent care and what to monitor.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="border-color:#4B3FA0; color:#4B3FA0;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                </div>
+                <h3>Secure &amp; Private</h3>
+                <p>Images are processed securely and deleted after 30 days. We never store identifiable personal information alongside your medical data.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TECHNOLOGY
+     ═══════════════════════════════════════════════ -->
+<section class="about-section about-tech">
+    <div class="about-section-inner">
+        <div class="about-section-img">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=640&q=80"
+                 alt="AI neural network visualisation" />
+        </div>
+        <div class="about-section-text">
+            <span class="section-tag tag-purple">Technology</span>
+            <h2>Serious Science, Simplified for Everyone</h2>
+            <p>
+                Under the hood, Skinalyze compares multiple state-of-the-art architectures —
+                MobileNetV2, EfficientNetB1, InceptionV3, and Vision Transformers (ViT) —
+                selecting the best-performing model for each prediction task.
+            </p>
+            <p>
+                Attention mechanisms (CBAM / ECA) sharpen the model's focus on clinically
+                relevant lesion features, while Grad-CAM converts the internal decision
+                process into a human-readable heatmap.
+            </p>
+            <div class="tech-tags">
+                <span>Python</span><span>TensorFlow / Keras</span><span>PyTorch</span>
+                <span>Grad-CAM</span><span>EfficientNet</span><span>ViT</span>
+                <span>ASP.NET Core</span><span>RAG-based Chatbot</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SDG / IMPACT
+     ═══════════════════════════════════════════════ -->
+<section class="about-impact">
+    <div class="about-impact-inner">
+        <div class="impact-header">
+            <span class="section-tag tag-green">Global Impact</span>
+            <h2>Built Around the UN Sustainable Development Goals</h2>
+        </div>
+        <div class="sdg-grid">
+            <div class="sdg-card">
+                <div class="sdg-badge sdg-3">SDG 3</div>
+                <h3>Good Health &amp; Well-being</h3>
+                <p>Early detection saves lives. Skinalyze makes explainable AI diagnostic support accessible to patients and clinicians everywhere, reducing mortality from late-stage skin cancer.</p>
+            </div>
+            <div class="sdg-card">
+                <div class="sdg-badge sdg-9">SDG 9</div>
+                <h3>Industry, Innovation &amp; Infrastructure</h3>
+                <p>Lightweight model deployment on the web brings cutting-edge deep-learning infrastructure outside the hospital, supporting digital health innovation in both developed and developing regions.</p>
+            </div>
+            <div class="sdg-card">
+                <div class="sdg-badge sdg-10">SDG 10</div>
+                <h3>Reduced Inequalities</h3>
+                <p>By offering a free, web-based screening tool, Skinalyze bridges the healthcare gap between urban specialists and rural populations who lack access to specialist dermatology care.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TEAM
+     ═══════════════════════════════════════════════ -->
+<section class="about-team">
+    <div class="about-team-inner">
+        <div class="impact-header">
+            <span class="section-tag tag-pink">The Team</span>
+            <h2>Built by Students, for Everyone</h2>
+            <p class="team-sub">
+                Skinalyze is a Final Year Project developed at
+                <strong>Bahria University Karachi Campus</strong>,
+                Department of Software Engineering, under the supervision of
+                <strong>Ms. Aamana</strong>.
+            </p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#eaf5ef,#d8ece5); color:#0D5F4A;">IA</div>
+                <h3>Ismaa Azam</h3>
+                <span class="team-enroll">02-131222-073</span>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#f0ebff,#e2d9ff); color:#4B3FA0;">AA</div>
+                <h3>Aliyan Ahmed Khan</h3>
+                <span class="team-enroll">02-131222-070</span>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar" style="background:linear-gradient(135deg,#fde8f4,#f9c8e4); color:#D6186A;">OR</div>
+                <h3>Obaid ur Rehman</h3>
+                <span class="team-enroll">02-131222-029</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CTA FOOTER BAND
+     ═══════════════════════════════════════════════ -->
+<section class="about-cta-band">
+    <h2>Ready to see what AI can tell you about your skin?</h2>
+    <p>Upload a clear image of your lesion and get an instant, explainable AI analysis — free, private, and secure.</p>
+    <a class="about-cta-big" asp-controller="Home" asp-action="Upload">Get Started Now &rarr;</a>
+</section>

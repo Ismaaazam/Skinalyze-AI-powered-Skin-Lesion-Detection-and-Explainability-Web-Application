@@ -23,7 +23,10 @@ namespace Skinalyze.Controllers
         {
             return View(new PredictionResultViewModel());
         }
-
+        public IActionResult About()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Upload(
             PredictionResultViewModel model)

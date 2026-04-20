@@ -7,18 +7,16 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
     <link rel="stylesheet" href="~/css/Chatbot.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&family=Sora:wght@600;700&display=swap" rel="stylesheet" />
 
     @await RenderSectionAsync("Styles", required: false)
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         html, body {
             margin: 0;
@@ -27,44 +25,48 @@
             background: #ffffff;
         }
 
-        main {
-            padding-top: 0;
-            margin-top: 0;
-        }
+        main { padding-top: 0; margin-top: 0; }
 
-        /* ── Navbar ─────────────────────────────────────────────── */
+        /* ════════════════════════════════════════
+           NAVBAR
+           ════════════════════════════════════════ */
         .sk-navbar {
             position: sticky;
             top: 0;
             z-index: 1000;
             width: 100%;
-            height: 64px;
+            height: 72px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 40px;
-            background: #ffffff;
-            border-bottom: 1px solid #f0f0f0;
-            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+            background: linear-gradient(
+                105deg,
+                #fdf8f2 0%,
+                #e8f6f1 42%,
+                #fce8f0 100%
+            );
+            border-bottom: 1px solid rgba(13, 95, 74, 0.10);
+            box-shadow: 0 2px 12px rgba(13, 95, 74, 0.06);
         }
 
-        /* Brand — far left */
+        /* ── Brand gradient text ── */
         .sk-brand {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 20px;
+            font-family: 'Sora', sans-serif;
+            font-size: 21px;
             font-weight: 700;
-            color: #0a1a14;
-            text-decoration: none;
             letter-spacing: -0.4px;
+            text-decoration: none;
+            background: linear-gradient(90deg, #4B3FA0 0%, #D6186A 35%, #0D5F4A 65%, #850E35 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             flex-shrink: 0;
         }
 
-            .sk-brand:hover {
-                color: #0a1a14;
-                text-decoration: none;
-            }
+        .sk-brand:hover { text-decoration: none; }
 
-        /* Center nav links */
+        /* ── Center nav links ── */
         .sk-nav-links {
             display: flex;
             align-items: center;
@@ -77,26 +79,61 @@
             transform: translateX(-50%);
         }
 
-            .sk-nav-links a {
-                font-family: 'DM Sans', sans-serif;
-                font-size: 15px;
-                font-weight: 400;
-                color: #1a1a2e;
-                text-decoration: none;
-                transition: color 0.15s;
-            }
+        .sk-nav-links a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: #1a1a2e;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
 
-                .sk-nav-links a:hover {
-                    color: #0D5F4A;
-                }
+        .sk-nav-links a:hover { color: #0D5F4A; }
 
-        /* Active state — highlight current page */
         .nav-link.active {
             color: #0D5F4A !important;
             font-weight: 600;
         }
 
-        /* Mobile toggler */
+        /* ── Chatbot pill ── */
+        .sk-chatbot-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #0D5F4A;
+            border-radius: 50px;
+            padding: 10px 22px;
+            text-decoration: none;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-shrink: 0;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(13, 95, 74, 0.25);
+        }
+
+        .sk-chatbot-btn:hover {
+            background: #0a4a39;
+            color: #ffffff;
+            text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(13, 95, 74, 0.32);
+        }
+
+        .sk-chatbot-btn svg {
+            width: 15px;
+            height: 15px;
+            stroke: #ffffff;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+
+        /* ── Mobile toggler ── */
         .sk-toggler {
             display: none;
             background: none;
@@ -113,8 +150,6 @@
                 flex-wrap: wrap;
                 height: auto;
                 padding: 14px 20px;
-                position: sticky;
-                top: 0;
             }
 
             .sk-nav-links {
@@ -125,23 +160,16 @@
                 gap: 16px;
                 width: 100%;
                 padding: 16px 0 8px;
-                border-top: 1px solid #f0f0f0;
+                border-top: 1px solid rgba(13,95,74,0.10);
                 margin-top: 12px;
             }
 
-                .sk-nav-links.open {
-                    display: flex;
-                }
-
-            .sk-toggler {
-                display: block;
-            }
+            .sk-nav-links.open { display: flex; }
+            .sk-toggler { display: block; }
+            .sk-chatbot-btn { display: none; }
         }
 
-        .single-column-content {
-            max-width: 1500px;
-            width: 100%;
-        }
+        .single-column-content { max-width: 1500px; width: 100%; }
     </style>
 </head>
 <body>
@@ -151,10 +179,14 @@
 
         <ul class="sk-nav-links" id="skNav">
             <li><a asp-controller="Home" asp-action="Upload">Upload image</a></li>
-            <li><a asp-controller="Chatbot" asp-action="Index">Chatbot</a></li>
             <li><a asp-controller="Home" asp-action="Privacy">Contacts</a></li>
-            <li><a asp-controller="Home" asp-action="Privacy">Insight</a></li>
+            <li><a asp-controller="Home" asp-action="About">About</a></li>
         </ul>
+
+        <a class="sk-chatbot-btn" asp-controller="Chatbot" asp-action="Index">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
+            Chatbot
+        </a>
 
         <button class="sk-toggler" onclick="document.getElementById('skNav').classList.toggle('open')">&#9776;</button>
     </nav>
