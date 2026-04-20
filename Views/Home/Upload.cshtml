@@ -1,5 +1,18 @@
 ﻿@model Skinalyze.ViewModels.PredictionResultViewModel
 
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+
+        @foreach (var error in ViewData.ModelState.Values
+       .SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+
+    </div>
+}
+
 @section Styles {
     <link rel="stylesheet" href="~/css/Upload.css" />
 }
@@ -62,7 +75,7 @@
             </form>
 
             <!-- Results Section -->
-            <div class="card sk-card mb-4">
+            <div id="resultSection" class="card sk-card mb-4">
 
                 <h5 class="fw-bold mb-2">
                     Processed Results
@@ -96,13 +109,27 @@
                             @Model.Recommendation
                         </p>
 
-                        <h6 class="mt-3">
-                            Grad-CAM Visualization
-                        </h6>
+                        <div class="row mt-3">
 
-                        <img src="data:image/png;base64,@Model.Heatmap"
-                             style="max-width:350px;"
-                             class="img-fluid border" />
+                            <div class="col-md-6 text-center">
+
+                                <h6>Uploaded Image</h6>
+
+                                <img src="@Model.UploadedImagePath"
+                                     class="img-fluid border" style="max-height:300px;" />
+
+                            </div>
+
+                            <div class="col-md-6 text-center">
+
+                                <h6>Grad-CAM Heatmap</h6>
+
+                                <img src="data:image/png;base64,@Model.Heatmap"
+                                     class="img-fluid border" style="max-height:300px;" />
+
+                            </div>
+
+                        </div>
 
                     </div>
                 }
@@ -116,6 +143,24 @@
 
             </div>
 
+            @if (Model.Prediction != null)
+            {
+                <div class="mt-4 text-center">
+
+                    <p class="fw-semibold">
+                        Would you like to record these results in a report?
+                    </p>
+
+                    <a asp-action="ReportForm"
+                       class="btn btn-success">
+
+                        Generate Report
+
+                    </a>
+
+                </div>
+            }
+
         </div>
 
     </div>
@@ -126,4 +171,30 @@
 
 @section Scripts {
     <script src="~/js/Upload.js"></script>
+
+    <script>
+
+        window.addEventListener("load", function () {
+
+            var hasResult =
+                '@(Model.Prediction != null)' === 'True';
+
+            if (hasResult) {
+
+                var resultSection =
+                    document.getElementById("resultSection");
+
+                if (resultSection) {
+
+                    resultSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+
+        });
+
+    </script>
 }
