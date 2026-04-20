@@ -9,6 +9,9 @@ namespace Skinalyze
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddSession();
+            builder.Services.AddHttpContextAccessor();
+
             QuestPDF.Settings.License =
                 QuestPDF.Infrastructure.LicenseType.Community;
 
@@ -30,6 +33,8 @@ namespace Skinalyze
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 

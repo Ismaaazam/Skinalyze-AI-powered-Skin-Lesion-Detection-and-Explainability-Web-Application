@@ -25,10 +25,12 @@ namespace Skinalyze.Controllers
         {
             return View(new PredictionResultViewModel());
         }
+
         public IActionResult About()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Upload(PredictionResultViewModel model)
         {
@@ -141,6 +143,18 @@ namespace Skinalyze.Controllers
 
                     model.Heatmap =
                         result.heatmap;
+
+                    model.HeatmapExplanation =
+                        result.heatmap_explanation;
+
+                    model.HighestActivation =
+                        result.highest_activation;
+
+                    model.CoveragePercent =
+                        result.coverage_percent.ToString();
+
+                    model.ActiveZones =
+                        result.active_zones.ToString();
                 }
 
                 double confidenceThreshold = 60.0;
@@ -153,6 +167,47 @@ namespace Skinalyze.Controllers
                     model.Prediction = null;
                     return View(model);
                 }
+
+                HttpContext.Session.SetString(
+                    "Prediction",
+                    model.Prediction);
+
+                HttpContext.Session.SetString(
+                    "Confidence",
+                    model.Confidence.ToString());
+
+                HttpContext.Session.SetString(
+                    "Severity",
+                    model.Severity);
+
+                HttpContext.Session.SetString(
+                    "Description",
+                    model.Description);
+
+                HttpContext.Session.SetString(
+                    "Recommendation",
+                    model.Recommendation);
+
+                HttpContext.Session.SetString(
+                    "Heatmap",
+                    model.Heatmap);
+
+                HttpContext.Session.SetString(
+                    "HeatmapExplanation",
+                    model.HeatmapExplanation ?? "");
+
+                HttpContext.Session.SetString(
+                    "HighestActivation",
+                    model.HighestActivation);
+
+                HttpContext.Session.SetString(
+                    "CoveragePercent",
+                    model.CoveragePercent);
+
+                HttpContext.Session.SetString(
+                    "ActiveZones",
+                    model.ActiveZones);
+
 
                 // ===== SAVE FILE LOCALLY =====
                 var uploadsFolder =
@@ -187,6 +242,10 @@ namespace Skinalyze.Controllers
                 model.UploadedImagePath =
                     "/uploads/" + uniqueFileName;
 
+                HttpContext.Session.SetString(
+                    "UploadedImagePath",
+                    model.UploadedImagePath);
+
                 return View(model);
             }
             catch (Exception)
@@ -205,49 +264,187 @@ namespace Skinalyze.Controllers
         [HttpPost]
         public IActionResult GeneratePdf(ReportViewModel model)
         {
-            var pdfBytes =
-                Document.Create(container =>
-                {
-                    container.Page(page =>
+            var prediction =
+                HttpContext.Session.GetString("Prediction");
+
+            var confidence =
+                HttpContext.Session.GetString("Confidence");
+
+            var severity =
+                HttpContext.Session.GetString("Severity");
+
+            var description =
+                HttpContext.Session.GetString("Description");
+
+            var recommendation =
+                HttpContext.Session.GetString("Recommendation");
+
+            var heatmap =
+                HttpContext.Session.GetString("Heatmap");
+
+            var uploadedImage =
+                HttpContext.Session.GetString("UploadedImagePath");
+
+            var heatmapExplanation =
+                HttpContext.Session.GetString("HeatmapExplanation");
+
+            var highestActivation =
+                HttpContext.Session.GetString("HighestActivation");
+
+            var coveragePercent =
+                HttpContext.Session.GetString("CoveragePercent");
+
+            var activeZones =
+                HttpContext.Session.GetString("ActiveZones");
+            try
+            {
+                var pdfBytes =
+                    Document.Create(container =>
                     {
-                        page.Margin(30);
+                        container.Page(page =>
+                        {
+                            page.Margin(30);
 
-                        page.Content()
-                            .Column(col =>
-                            {
-                                col.Item().Text(
-                                    "Skinalyze Report")
-                                    .FontSize(20)
-                                    .Bold();
+                            page.Content()
+                                .Column(col =>
+                                {
+                                    col.Item().Text("Skinalyze Report")
+                                        .FontSize(20)
+                                        .Bold();
 
-                                col.Item().Text(
-                                    "Created by an AI Skin Lesion Detection Model");
+                                    col.Item().Text(
+                                        "Created by an AI Skin Lesion Detection Model");
 
-                                col.Item().PaddingTop(10);
+                                    col.Item().PaddingTop(10);
 
-                                col.Item().Text(
-                                    $"Name: {model.FirstName} {model.LastName}");
+                                    col.Item().Text("Patient Details")
+                                        .Bold();
 
-                                col.Item().Text(
-                                    $"Age: {model.Age}");
+                                    col.Item().Text(
+                                        $"Name: {model.FirstName} {model.LastName}");
 
-                                col.Item().Text(
-                                    $"Occupation: {model.Occupation}");
+                                    col.Item().Text(
+                                        $"Age: {model.Age}");
 
-                                col.Item().Text(
-                                    $"Family History: {model.FamilyHistory}");
-                            });
-                    });
+                                    col.Item().Text(
+                                        $"Occupation: {model.Occupation}");
 
-                }).GeneratePdf();
+                                    col.Item().Text(
+                                        $"Family History: {model.FamilyHistory}");
+
+                                    col.Item().PaddingTop(10);
+
+                                    col.Item().Text("Prediction Result")
+                                        .Bold();
+
+                                    col.Item().Text(
+                                        $"Disease: {prediction}");
+
+                                    col.Item().Text(
+                                        $"Confidence: {confidence}%");
+
+                                    col.Item().Text(
+                                        $"Severity: {severity}");
+
+                                    col.Item().Text(
+                                        $"Description: {description}");
+
+                                    col.Item().Text(
+                                        $"Recommendation: {recommendation}");
+
+                                    // ===== ADD UPLOADED IMAGE =====
+
+                                    col.Item().PaddingTop(10);
+
+                                    col.Item().Row(row =>
+                                    {
+                                        if (!string.IsNullOrEmpty(uploadedImage))
+                                        {
+                                            var imagePath =
+                                                Path.Combine(
+                                                    Directory.GetCurrentDirectory(),
+                                                    "wwwroot",
+                                                    uploadedImage.TrimStart('/'));
+
+                                            if (System.IO.File.Exists(imagePath))
+                                            {
+                                                row.RelativeItem().Column(c =>
+                                                {
+                                                    c.Item()
+                                                        .PaddingBottom(5)
+                                                        .Text("Uploaded Image")
+                                                        .Bold();
+
+                                                    c.Item()
+                                                        .Width(200).Height(160)
+                                                        .Image(imagePath);
+                                                });
+                                            }
+                                        }
+
+                                        if (!string.IsNullOrEmpty(heatmap))
+                                        {
+                                            try
+                                            {
+                                                var heatmapBytes =
+                                                    Convert.FromBase64String(heatmap);
+
+                                                row.RelativeItem().Column(c =>
+                                                {
+                                                    c.Item().Text("Grad-CAM Heatmap")
+                                                        .Bold();
+
+                                                    c.Item()
+                                                        .Width(200).Height(160)
+                                                        .Image(heatmapBytes);
+                                                });
+                                            }
+                                            catch
+                                            {
+
+                                            }
+                                        }
+                                    });
+
+                                    col.Item().PaddingTop(10);
+
+                                    col.Item().Text("Heatmap Interpretation")
+                                        .Bold();
+
+                                    col.Item().Text(
+                                        heatmapExplanation
+                                    );
+
+                                    col.Item().PaddingTop(10);
+
+                                    col.Item().Text("Heatmap Analysis")
+                                        .Bold();
+
+                                    col.Item().Text(
+                                        $"Activation: {highestActivation}");
+
+                                    col.Item().Text(
+                                        $"Lesion Coverage: {coveragePercent}%");
+
+                                    col.Item().Text(
+                                        $"Active Zones: {activeZones}");
+                                });
+                        });
+
+                    }).GeneratePdf();
 
 
-            TempData["ShowThankYou"] = true;
+                TempData["ShowThankYou"] = true;
 
-            return File(
-                pdfBytes,
-                "application/pdf",
-                "Skinalyze_Report.pdf");
+                return File(
+                    pdfBytes,
+                    "application/pdf",
+                    "Skinalyze_Report.pdf");
+            }
+            catch
+            {
+                return Content("An error occured while generating the report.");
+            }
         }
 
         public IActionResult ThankYou()

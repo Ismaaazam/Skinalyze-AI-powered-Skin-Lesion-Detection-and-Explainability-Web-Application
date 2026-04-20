@@ -17,5 +17,12 @@
         public string? Heatmap { get; set; }
 
         public string? UploadedImagePath { get; set; }
+
+        public string? HighestActivation { get; set; }
+
+        public string? CoveragePercent { get; set; }
+
+        public string? ActiveZones { get; set; }
+        public string? HeatmapExplanation { get; set; }
     }
 }

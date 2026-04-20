@@ -130,6 +130,38 @@
                             </div>
 
                         </div>
+                        <div class="mt-3">
+
+                            <p class="mt-2">
+
+                                <strong>Heatmap Interpretation:</strong>
+
+                                <br />
+
+                                @Model.HeatmapExplanation
+
+                            </p>
+
+                            <h6 class="fw-bold">
+                                Heatmap Analysis
+                            </h6>
+
+                            <p>
+                                <strong>Activation:</strong>
+                                @Model.HighestActivation
+                            </p>
+
+                            <p>
+                                <strong>Lesion Coverage:</strong>
+                                @Model.CoveragePercent %
+                            </p>
+
+                            <p>
+                                <strong>Active Zones:</strong>
+                                @Model.ActiveZones
+                            </p>
+
+                        </div>
 
                     </div>
                 }
