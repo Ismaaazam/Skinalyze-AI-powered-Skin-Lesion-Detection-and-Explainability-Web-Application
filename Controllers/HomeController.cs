@@ -90,7 +90,7 @@ namespace Skinalyze.Controllers
                     try
                     {
                         response = await _httpClient.PostAsync(
-                            "http://127.0.0.1:5000/predict",
+                            "https://web-production-55d23.up.railway.app/predict",
                             content);
                     }
                     catch (HttpRequestException)
