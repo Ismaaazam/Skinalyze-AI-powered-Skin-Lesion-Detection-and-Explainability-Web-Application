@@ -16,7 +16,7 @@ function initChatbot(mode) {
     function appendBubble(text, role) {
         const div = document.createElement("div");
         div.className = "bubble " + role;
-        div.textContent = text;
+        div.innerHTML = marked.parse(text);
         chatBody.appendChild(div);
         chatBody.scrollTop = chatBody.scrollHeight;
         return div;
@@ -36,21 +36,65 @@ function initChatbot(mode) {
         if (dot) dot.remove();
     }
 
-    /* Simulated bot reply (replace with real API call later) */
-    function botReply(userText) {
+    /* Real Flask API chatbot reply */
+    async function botReply(userText) {
+
         showTyping();
-        setTimeout(() => {
+
+        try {
+
+            const API_URL =
+                "https://web-production-55d23.up.railway.app/chat";
+
+            const response =
+                await fetch(
+                    API_URL,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            message: userText
+                        })
+                    }
+                );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "API request failed"
+                );
+
+            }
+
+            const data =
+                await response.json();
+
             removeTyping();
-            const replies = [
-                "Based on the description, I recommend consulting a dermatologist for a professional evaluation.",
-                "Could you upload a clear image so I can provide better insights?",
-                "Regarding the lesion: Based on the information provided, consistent monitoring is recommended.",
-                "Please describe the lesion's color, size, and any changes you've noticed recently.",
-                "I'm analyzing your query. For accurate results, please use the Upload feature to share an image."
-            ];
-            const reply = replies[Math.floor(Math.random() * replies.length)];
-            appendBubble(reply, "bot");
-        }, 1200);
+
+            appendBubble(
+                data.bot_response,
+                "bot"
+            );
+
+        }
+        catch (error) {
+
+            console.error(error);
+
+            removeTyping();
+
+            appendBubble(
+                "⚠️ Unable to reach chatbot server.",
+                "bot"
+            );
+
+        }
+
     }
 
     /* ── Send message ─────────────────────────────────── */
