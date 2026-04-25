@@ -5,7 +5,7 @@
     <div class="alert alert-danger">
 
         @foreach (var error in ViewData.ModelState.Values
-       .SelectMany(v => v.Errors))
+            .SelectMany(v => v.Errors))
         {
             <p>@error.ErrorMessage</p>
         }
@@ -26,53 +26,66 @@
                 <p class="text-muted mb-0">
                     Upload a clear lesion image for analysis.
                 </p>
+
             </div>
         </div>
-
+        @await Html.PartialAsync("_UploadPolicy")
         <div class="single-column-content">
 
-            <form asp-action="Upload"
-                  method="post"
-                  enctype="multipart/form-data">
+            @* Replace your existing <form> block with this *@
+            <input type="hidden" id="hasResult" value="@(Model.Prediction != null)" />
+            <form asp-action="Upload" method="post" enctype="multipart/form-data">
 
-                <!-- Upload Card -->
-                <div class="card sk-card mb-4">
+                <div class="upload-form-card">
 
-                    <div class="upload-section">
+                    <!-- Dropzone -->
+                    <div class="uploader-inner" id="dropzone">
 
-                        <div class="uploader">
-
-                            <div class="icon">🖼️</div>
-
-                            <p class="fw-semibold mt-2">
-                                Click to Upload Image
-                            </p>
-
-                            <small class="text-muted">
-                                .jpg, .png • Max 10MB
-                            </small>
-
-                            <input asp-for="ImageFile"
-                                   id="fileInput"
-                                   type="file"
-                                   class="form-control mt-3" />
-
+                        <div id="dropzoneContent">
+                            <div class="upload-icon-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="4" ry="4" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <polyline points="21 15 16 10 5 21" />
+                                </svg>
+                            </div>
+                            <p class="upload-title">Click or Drag to Upload</p>
+                            <p class="upload-sub">Accepts .jpg, .png &nbsp;·&nbsp; Max 10MB</p>
+                            <label class="upload-browse-btn" for="fileInput">Browse File</label>
                         </div>
 
-                        <div class="d-flex gap-2 mt-3">
-
-                            <button type="submit"
-                                    class="btn btn-success px-4">
-                                Analyze Image
-                            </button>
-
+                        <!-- Preview (hidden until file selected) -->
+                        <div id="previewState" style="display:none; width:100%; text-align:center;">
+                            <img id="previewImg" src="" alt="Preview"
+                                 style="max-height:200px; max-width:100%; border-radius:14px; object-fit:contain;" />
+                            
                         </div>
 
+                        <input asp-for="ImageFile" id="fileInput" type="file"
+                               accept="image/jpeg,image/png" style="display:none;" />
+                    </div>
+
+                    <p class="upload-tip">Input clear picture, no filters, focus on lesion.</p>
+
+                    <!-- Actions -->
+                    <div class="upload-actions">
+                        <button type="submit" class="btn-upload-pill">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+                                <polyline points="16 16 12 12 8 16" />
+                                <line x1="12" y1="12" x2="12" y2="21" />
+                                <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+                            </svg>
+                            Upload Image
+                        </button>
+                        <button type="button" id="clearBtn" class="btn-clear-pill">Clear</button>
                     </div>
 
                 </div>
 
             </form>
+
 
             <!-- Results Section -->
             <div id="resultSection" class="card sk-card mb-4">
@@ -184,7 +197,7 @@
                     </p>
 
                     <a asp-action="ReportForm"
-                       class="btn btn-success">
+                        class="btn-report-pill">
 
                         Generate Report
 
@@ -200,33 +213,7 @@
     @await Html.PartialAsync("_ChatbotPartial")
 
 </div>
-
 @section Scripts {
-    <script src="~/js/Upload.js"></script>
-
-    <script>
-
-        window.addEventListener("load", function () {
-
-            var hasResult =
-                '@(Model.Prediction != null)' === 'True';
-
-            if (hasResult) {
-
-                var resultSection =
-                    document.getElementById("resultSection");
-
-                if (resultSection) {
-
-                    resultSection.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
-            }
-
-        });
-
-    </script>
+    <script src="~/js/Upload.js" asp-append-version="true"></script>
 }
+

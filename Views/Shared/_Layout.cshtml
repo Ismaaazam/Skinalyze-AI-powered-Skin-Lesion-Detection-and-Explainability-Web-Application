@@ -178,9 +178,9 @@
         <a class="sk-brand" asp-area="" asp-controller="Home" asp-action="Index">Skinalyze</a>
 
         <ul class="sk-nav-links" id="skNav">
-            <li><a asp-controller="Home" asp-action="Upload">Upload image</a></li>
-            <li><a asp-controller="Home" asp-action="Privacy">Contacts</a></li>
             <li><a asp-controller="Home" asp-action="About">About</a></li>
+            <li><a asp-controller="Home" asp-action="Upload">Upload image</a></li>
+            <li><a asp-controller="Home" asp-action="Privacy">Insights</a></li>
         </ul>
 
         <a class="sk-chatbot-btn" asp-controller="Chatbot" asp-action="Index">
@@ -199,5 +199,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script src="~/js/Chatbot.js"></script>
+    <div id="toastContainer" class="toast-container"></div>
 </body>
 </html>

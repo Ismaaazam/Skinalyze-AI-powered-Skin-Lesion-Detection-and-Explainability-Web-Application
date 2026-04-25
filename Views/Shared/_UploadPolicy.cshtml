@@ -1,0 +1,450 @@
+@* ─────────────────────────────────────────────────────────────────
+   _UploadPolicy.cshtml  —  Skinalyze
+   Drop this partial inside Upload.cshtml with:
+       @await Html.PartialAsync("_UploadPolicy")
+   ───────────────────────────────────────────────────────────────── *@
+
+<style>
+    /* ── Policy card shell ───────────────────────────────────── */
+    .policy-card {
+        background: #ffffff;
+        border: 1px solid #e8ede8;
+        border-radius: 18px;
+        overflow: hidden;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 16px rgba(13, 95, 74, 0.05);
+    }
+
+    /* ── Coloured header bar ─────────────────────────────────── */
+    .policy-header {
+        background: linear-gradient(105deg, #0D5F4A 0%, #1a8a68 60%, #4B3FA0 100%);
+        padding: 22px 28px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    .policy-header-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .policy-header-icon svg {
+        width: 20px;
+        height: 20px;
+        stroke: #ffffff;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .policy-header h5 {
+        font-family: 'Sora', 'DM Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0 0 2px;
+    }
+
+    .policy-header p {
+        font-size: 12px;
+        color: rgba(255,255,255,0.78);
+        margin: 0;
+    }
+
+    /* ── Policy body ─────────────────────────────────────────── */
+    .policy-body {
+        padding: 28px 28px 24px;
+    }
+
+    /* ── Section headings inside policy ─────────────────────── */
+    .policy-section-title {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #0D5F4A;
+        margin: 0 0 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .policy-section-title::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e8ede8;
+    }
+
+    /* ── Two-column rule grid ────────────────────────────────── */
+    .policy-rules-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    .policy-rule {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: #f7fbf9;
+        border: 1px solid #e0ede8;
+        border-radius: 10px;
+        padding: 12px 14px;
+    }
+
+    .rule-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .rule-icon svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .rule-text strong {
+        font-size: 13px;
+        font-weight: 600;
+        color: #0a1a14;
+        display: block;
+        margin-bottom: 2px;
+    }
+
+    .rule-text span {
+        font-size: 12px;
+        color: #4a5a55;
+        line-height: 1.5;
+    }
+
+    /* ── Accordion / collapsible sections ───────────────────── */
+    .policy-accordion {
+        border: 1px solid #e8ede8;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 16px;
+    }
+
+    .policy-accordion-btn {
+        width: 100%;
+        background: #fafbfa;
+        border: none;
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #0a1a14;
+        text-align: left;
+        transition: background 0.2s;
+    }
+
+    .policy-accordion-btn:hover { background: #f0f7f4; }
+
+    .policy-accordion-btn .acc-chevron {
+        width: 18px;
+        height: 18px;
+        stroke: #7a8a8e;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: transform 0.25s;
+        flex-shrink: 0;
+    }
+
+    .policy-accordion-btn.open .acc-chevron {
+        transform: rotate(180deg);
+    }
+
+    .policy-accordion-body {
+        display: none;
+        padding: 0 18px 16px;
+        background: #ffffff;
+    }
+
+    .policy-accordion-body.open { display: block; }
+
+    .policy-accordion-body p {
+        font-size: 13.5px;
+        color: #4a5a55;
+        line-height: 1.70;
+        margin: 12px 0 0;
+    }
+
+    .policy-accordion-body ul {
+        margin: 10px 0 0;
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .policy-accordion-body ul li {
+        position: relative;
+        padding-left: 18px;
+        font-size: 13px;
+        color: #4a5a55;
+        margin-bottom: 8px;
+        line-height: 1.55;
+    }
+
+    .policy-accordion-body ul li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 7px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #0D5F4A;
+    }
+
+    /* ── Disclaimer banner ───────────────────────────────────── */
+    .policy-disclaimer {
+        background: linear-gradient(105deg, #fff8e8, #fff3f8);
+        border: 1px solid #f5d88a;
+        border-radius: 10px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .disclaimer-icon {
+        width: 34px;
+        height: 34px;
+        background: #fff0c0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .disclaimer-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: #b07d00;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .policy-disclaimer p {
+        font-size: 13px;
+        color: #5a4500;
+        line-height: 1.60;
+        margin: 0;
+    }
+
+    .policy-disclaimer strong { color: #3d2f00; }
+
+    /* ── Privacy strip ───────────────────────────────────────── */
+    .policy-privacy-strip {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        background: #f7fbf9;
+        border: 1px solid #d8ece5;
+        border-radius: 10px;
+        padding: 14px 18px;
+    }
+
+    .privacy-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #0a1a14;
+    }
+
+    .privacy-item svg {
+        width: 16px;
+        height: 16px;
+        stroke: #0D5F4A;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex-shrink: 0;
+    }
+
+    @@media (max-width: 768px) {
+        .policy-rules-grid { grid-template-columns: 1fr; }
+        .policy-privacy-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
+        .policy-body { padding: 20px 18px; }
+    }
+</style>
+
+<div class="policy-card">
+
+    <!-- Header -->
+    <div class="policy-header">
+        <div class="policy-header-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+        </div>
+        <div>
+            <h5>Image Submission Policy</h5>
+            <p>Please read before uploading — your safety and accuracy depend on it</p>
+        </div>
+    </div>
+
+    <div class="policy-body">
+
+        <!-- ── Medical Disclaimer ──────────────────────── -->
+        <div class="policy-disclaimer">
+            <div class="disclaimer-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </div>
+            <p>
+                <strong>Important — Not a Medical Diagnosis.</strong>
+                Skinalyze is an AI-assisted decision-support tool intended to aid early screening.
+                Results are <strong>not a substitute for professional medical advice</strong>,
+                diagnosis, or treatment by a qualified dermatologist. Always consult a licensed
+                healthcare provider for any skin concern.
+            </p>
+        </div>
+
+        <!-- ── Image Quality Rules ─────────────────────── -->
+        <p class="policy-section-title">Image Quality Guidelines</p>
+        <div class="policy-rules-grid">
+
+            <div class="policy-rule">
+                <div class="rule-icon" style="background:#eaf5ef;">
+                    <svg viewBox="0 0 24 24" stroke="#0D5F4A">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </div>
+                <div class="rule-text">
+                    <strong>Focus on the Lesion</strong>
+                    <span>Centre the lesion in the frame. Keep it as large as possible without cropping the edges.</span>
+                </div>
+            </div>
+
+            <div class="policy-rule">
+                <div class="rule-icon" style="background:#f0ebff;">
+                    <svg viewBox="0 0 24 24" stroke="#4B3FA0">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                        <circle cx="12" cy="13" r="4"/>
+                    </svg>
+                </div>
+                <div class="rule-text">
+                    <strong>Good Lighting</strong>
+                    <span>Use natural or bright indoor light. Avoid harsh flash, which causes glare and washes out colour.</span>
+                </div>
+            </div>
+
+            <div class="policy-rule">
+                <div class="rule-icon" style="background:#fde8f4;">
+                    <svg viewBox="0 0 24 24" stroke="#D6186A">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </div>
+                <div class="rule-text">
+                    <strong>No Filters or Editing</strong>
+                    <span>Upload unedited photos only. Colour grading, filters, and cropping alter the data and reduce accuracy.</span>
+                </div>
+            </div>
+
+            <div class="policy-rule">
+                <div class="rule-icon" style="background:#eaf5ef;">
+                    <svg viewBox="0 0 24 24" stroke="#0D5F4A">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </div>
+                <div class="rule-text">
+                    <strong>Steady &amp; Sharp</strong>
+                    <span>Rest your hand or device against a surface to avoid blur. The AI cannot analyse a blurry lesion reliably.</span>
+                </div>
+            </div>
+
+            <div class="policy-rule">
+                <div class="rule-icon" style="background:#fce8ef;">
+                    <svg viewBox="0 0 24 24" stroke="#850E35">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    </svg>
+                </div>
+                <div class="rule-text">
+                    <strong>Scale Reference (Recommended)</strong>
+                    <span>Place a common object (e.g. a coin) next to the lesion if possible — this helps contextualise lesion size.</span>
+                </div>
+            </div>
+
+            <div class="policy-rule">
+                <div class="rule-icon" style="background:#f0ebff;">
+                    <svg viewBox="0 0 24 24" stroke="#4B3FA0">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                </div>
+                <div class="rule-text">
+                    <strong>Supported Formats</strong>
+                    <span>JPEG and PNG only. Maximum file size: 10 MB. Minimum resolution: 224 × 224 px for reliable analysis.</span>
+                </div>
+            </div>
+
+        </div>
+
+         
+
+        <!-- ── Privacy Strip ───────────────────────────── -->
+        <div class="policy-privacy-strip mt-3">
+            
+            <div class="privacy-item">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                <span>Never sold to third parties</span>
+            </div>
+            <div class="privacy-item">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>No account required</span>
+            </div>
+        </div>
+
+    </div><!-- /policy-body -->
+</div><!-- /policy-card -->
+
+<script>
+    function toggleAcc(btn) {
+        const body = btn.nextElementSibling;
+        const isOpen = body.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.policy-accordion-body').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.policy-accordion-btn').forEach(b => b.classList.remove('open'));
+        // Open clicked if it was closed
+        if (!isOpen) {
+            body.classList.add('open');
+            btn.classList.add('open');
+        }
+    }
+</script>
