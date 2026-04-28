@@ -53,7 +53,7 @@
         /* ── Brand gradient text ── */
         .sk-brand {
             font-family: 'Sora', sans-serif;
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 700;
             letter-spacing: -0.4px;
             text-decoration: none;
@@ -81,7 +81,7 @@
 
         .sk-nav-links a {
             font-family: 'DM Sans', sans-serif;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 400;
             color: #1a1a2e;
             text-decoration: none;
@@ -98,7 +98,7 @@
         /* ── Chatbot pill ── */
         .sk-chatbot-btn {
             font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             color: #ffffff;
             background: #0D5F4A;
@@ -180,7 +180,7 @@
         <ul class="sk-nav-links" id="skNav">
             <li><a asp-controller="Home" asp-action="About">About</a></li>
             <li><a asp-controller="Home" asp-action="Upload">Upload image</a></li>
-            <li><a asp-controller="Home" asp-action="Privacy">Insights</a></li>
+            <li><a asp-controller="Home" asp-action="Insights">Insights</a></li>
         </ul>
 
         <a class="sk-chatbot-btn" asp-controller="Chatbot" asp-action="Index">
@@ -199,6 +199,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script src="~/js/Chatbot.js"></script>
-    <div id="toastContainer" class="toast-container"></div>
+    <div id="toastContainer" class="sk-toast-container"></div>
 </body>
 </html>

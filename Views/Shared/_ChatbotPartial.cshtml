@@ -1,25 +1,49 @@
-﻿<div class="chat-panel modal-chat" id="chatPanel" aria-hidden="true">
+﻿
+<!-- ① Floating Action Button ─────────────────────────────── -->
+<button class="chat-fab" id="chatFab" aria-label="Open chatbot">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+    <span>Ask Doctor AI</span>
+    <span class="chat-fab-ping"></span>
+</button>
+
+<!-- ② Floating Chat Panel ────────────────────────────────── -->
+<div class="chat-panel chat-floating" id="chatPanel" role="dialog"
+     aria-label="Doctor Asklepios chat" aria-hidden="true">
+
     <!-- Header -->
     <div class="chat-header">
         <div class="chat-avatar">DA</div>
         <div class="chat-title">
-            <h4>Doctor Asklepios.ai</h4>
-            <span class="chat-subtitle">GPT-6 • 218 LLMs • 118 left this month</span>
+            <h4>Doctor AI</h4>
+            <span class="chat-subtitle">AI Dermatology Assistant &middot; Online</span>
         </div>
-        <button class="close-chat-btn" id="closeChat" aria-label="Close chat">×</button>
+        <button class="close-chat-btn" id="closeChat" aria-label="Close chat">&times;</button>
     </div>
 
     <!-- Body -->
     <div class="chat-body" id="chatBody">
         <div class="bubble bot">
-            <strong>Hi! I'm Doctor Asklepios 👋</strong><br />
-            Upload your image and click <strong>Suggestion</strong> to get AI-powered insights.
+            <strong>Hi! I'm Doctor AI 👋</strong><br />
+            Upload your image and I'll help you understand your skin analysis results.
+            How can I assist you today?
         </div>
     </div>
 
     <!-- Footer -->
     <div class="chat-footer">
-        <input type="text" id="chatInput" placeholder="Send your message to Doctor Asklepios..." />
-        <button id="sendChat">Send</button>
+        <input type="text" id="chatInput" placeholder="Ask Doctor Asklepios..." aria-label="Chat message" />
+        <button id="sendChat" aria-label="Send message">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                 stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+        </button>
     </div>
 </div>
+
+<!-- ③ Backdrop ───────────────────────────────────────────── -->
+<div class="chat-backdrop" id="chatBackdrop" aria-hidden="true"></div>

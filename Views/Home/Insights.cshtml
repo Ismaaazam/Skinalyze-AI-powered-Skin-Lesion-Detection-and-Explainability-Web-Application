@@ -1,0 +1,914 @@
+﻿@{
+    ViewData["Title"] = "Insights";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Insights.css" />
+}
+
+<div class="app-wrapper" id="appWrapper">
+    <div class="insights-page">
+
+        <!-- ══ HERO ══════════════════════════════════════════════════ -->
+        <div class="insights-hero">
+            <div class="hero-text">
+                <p class="hero-eyebrow">Disease Reference Library</p>
+                <h1 class="hero-title">Skin Condition <em>Insights</em></h1>
+                <p class="hero-desc">
+                    Explore all 38 skin conditions recognised by Skinalyze. Each entry includes
+                    a clinical description, severity level, and care recommendations to help
+                    you understand what our AI detects.
+                </p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-pill">
+                    <span class="stat-dot low"></span>
+                    <span><strong>15</strong> Low Severity</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-dot medium"></span>
+                    <span><strong>16</strong> Medium Severity</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-dot high"></span>
+                    <span><strong>10</strong> High Severity</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-dot" style="background:#ffffff;"></span>
+                    <span><strong>38</strong> Total Conditions</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ DISCLAIMER ════════════════════════════════════════════ -->
+        <div class="insights-disclaimer">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            <p>
+                <strong>Medical Disclaimer:</strong> The information on this page is for educational reference only and is not a substitute
+                for professional medical diagnosis or treatment. Always consult a qualified dermatologist for any skin concerns.
+            </p>
+        </div>
+
+        <!-- ══ CONTROLS ══════════════════════════════════════════════ -->
+        <div class="insights-controls">
+            <div class="search-wrap">
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search conditions, symptoms…" autocomplete="off" />
+            </div>
+
+            <div class="filter-pills">
+                <button class="filter-pill active" data-filter="all">
+                    All Conditions
+                </button>
+                <button class="filter-pill" data-filter="Low">
+                    <span class="pill-dot"></span> Low
+                </button>
+                <button class="filter-pill" data-filter="Medium">
+                    <span class="pill-dot"></span> Medium
+                </button>
+                <button class="filter-pill" data-filter="High">
+                    <span class="pill-dot"></span> High
+                </button>
+            </div>
+
+            <div class="results-count" id="resultsCount">38 conditions</div>
+        </div>
+
+        <!-- ══ DISEASE GRID ════════════════════════════════════════════ -->
+        <div class="disease-grid" id="diseaseGrid">
+
+            <!-- ── LOW severity ──────────────────────────────────────── -->
+
+            <div class="disease-card" data-severity="Low" data-name="akne acne blackheads whiteheads pimples hormonal" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Akne (Acne)</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Akne is a common inflammatory skin condition that occurs when hair follicles become blocked with excess oil, dead skin cells, and bacteria. It is strongly associated with hormonal changes, stress, genetics, and the use of oily skin products. Symptoms include blackheads, whiteheads, red pimples, painful nodules, and sometimes cysts.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Keep skin clean, avoid oily cosmetics, and use mild cleansers. Consult a dermatologist if severe.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="benign keratosis aging sun waxy rough patches" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Benign Keratosis</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Benign keratosis refers to harmless skin growths commonly linked to aging and repeated sun exposure. These lesions typically appear as rough, waxy, or slightly raised patches that vary in color. They are non-cancerous but may increase in number over time. Monitoring is recommended if the lesion changes.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Monitor skin changes and protect skin from excessive sunlight.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="dermatofibroma benign bump insect bite firm brown" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Dermatofibroma</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Dermatofibroma is a benign skin growth often caused by minor injury such as insect bites or trauma. It appears as a small, firm bump that may be brown or reddish in color. Most lesions are painless but may itch slightly. These growths are harmless and usually do not require treatment.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Usually harmless but consult a dermatologist if growth changes.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="hair loss alopecia bald patchy autoimmune hormonal" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Hair Loss — Alopecia</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Alopecia refers to hair loss caused by autoimmune reactions, hormonal imbalance, genetics, or nutritional deficiencies. It may appear as patchy hair loss or thinning of hair. Some forms are temporary, while others may be permanent. Early medical consultation can improve treatment outcomes.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Consult a dermatologist for proper diagnosis and nutritional guidance.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="light pigmentation melanin sun spots lighter darker" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Light Diseases &amp; Pigmentation Disorders</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Light-related pigmentation disorders occur due to changes in melanin production caused by sun exposure, genetics, or inflammation. These conditions result in lighter or darker patches on the skin. Symptoms are usually cosmetic but may indicate underlying skin sensitivity.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Protect skin from sunlight.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="melanocytic nevi moles pigment benign birthmark" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Melanocytic Nevi (Moles)</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Melanocytic nevi, commonly called moles, are benign skin growths formed from pigment-producing cells. They may appear during childhood or adulthood. Most are harmless but should be monitored for unusual changes such as irregular borders or color variation.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Monitor for changes in size or color.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="molluscum contagiosum viral poxvirus bumps round" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Molluscum Contagiosum</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Molluscum contagiosum is a viral skin infection caused by a poxvirus that produces small, round, firm bumps with a central indentation. The lesions are usually painless but may become itchy. It spreads through direct skin contact or contaminated objects. Although generally harmless, it may persist for several months.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Avoid scratching and maintain hygiene.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="nail fungus onychomycosis brittle discolored thickened" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Nail Fungus (Onychomycosis)</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Nail fungus is a fungal infection that affects fingernails or toenails. It causes nails to become thickened, brittle, discolored, and sometimes distorted. The infection often develops in warm, moist environments. Without treatment, it may spread to nearby skin or cause discomfort.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Keep nails dry and consult for antifungal treatment.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="pigment melanin color darker lighter hormonal sun" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Pigment Disorders</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Pigment disorders involve abnormal changes in skin color caused by variations in melanin production or distribution. These changes may result from sun exposure, inflammation, hormonal changes, or genetic factors. Symptoms include patches of lighter or darker skin. Most pigmentation changes are harmless but may require monitoring.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Protect skin from sun exposure.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="pityriasis rosea herald patch oval viral temporary" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Pityriasis Rosea</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Pityriasis rosea typically begins with a single large patch known as a herald patch, followed by multiple smaller oval-shaped lesions spreading across the chest or back. The condition is linked to viral infections. Mild itching may occur, but most cases resolve on their own within several weeks.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Use soothing lotions.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Low" data-name="seborrheic keratosis waxy wart benign aging brown black" onclick="toggleCard(this)">
+                <div class="card-strip Low"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Seborrheic Keratosis</h3>
+                        <span class="severity-badge Low">Low</span>
+                    </div>
+                    <p class="card-desc">Seborrheic keratosis is a common benign skin growth that appears as waxy, rough, or wart-like lesions. These growths are usually brown, black, or tan and occur more frequently with aging. They are harmless but may resemble malignant lesions. Medical evaluation is recommended if changes occur.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Usually harmless but monitor changes.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Low"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOW count above should total 11 items including the remaining 4 below -->
+            <!-- ── MEDIUM severity ─────────────────────────────────── -->
+
+            <div class="disease-card" data-severity="Medium" data-name="atopic dermatitis chronic inflammatory itchy dry immune" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Atopic Dermatitis</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Atopic dermatitis is a chronic inflammatory skin condition related to immune system sensitivity and genetic factors. It causes dry, itchy, inflamed skin that may crack or bleed. Symptoms include redness, scaling, and intense itching especially around elbows, knees, and neck. Flare-ups are often triggered by allergens or stress.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Use moisturizers regularly, avoid harsh soaps, and consult a dermatologist for medicated creams.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="chickenpox varicella viral contagious blisters fever rash" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Chickenpox (Varicella)</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Chickenpox is a contagious viral infection caused by the varicella-zoster virus. It spreads through respiratory droplets or direct contact with infected lesions. Symptoms begin with fever and fatigue, followed by an itchy rash that forms fluid-filled blisters. Most cases recover naturally, but complications may occur in adults or immunocompromised individuals.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Maintain hygiene, avoid scratching, and consult a doctor if fever persists.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="cowpox viral animal rodent blisters crusted sores" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Cowpox</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Cowpox is a rare viral infection transmitted from infected animals such as rodents or cats. It causes localized skin lesions that begin as red spots and progress into blisters and crusted sores. Symptoms may include mild fever and swollen lymph nodes. Most cases resolve without serious complications.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Avoid touching lesions and maintain cleanliness. Seek medical advice if symptoms worsen.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="eczema inflammatory dry itchy red scaling allergies" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Eczema</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Eczema is a group of inflammatory skin conditions that cause dry, itchy, and inflamed skin. It is commonly associated with allergies, immune sensitivity, and environmental irritants. Symptoms include redness, scaling, cracking, and sometimes fluid-filled blisters. Chronic scratching may lead to skin thickening or infection.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Use moisturizers frequently and avoid known irritants.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="exanthems drug eruptions medication allergic rash blistering" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Exanthems &amp; Drug Eruptions</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Drug eruptions are skin reactions caused by medications or allergic responses. Symptoms may include widespread redness, rash, itching, or blistering. Reactions usually occur shortly after starting a new medication. Severe forms may involve peeling skin or fever and require urgent medical attention.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Stop suspected medication and consult a healthcare provider immediately.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="HFMD hand foot mouth disease viral children blisters" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">HFMD — Hand, Foot &amp; Mouth Disease</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Hand, Foot, and Mouth Disease is a viral infection commonly affecting children. It causes fever, sore throat, and painful mouth sores along with rashes or blisters on hands and feet. The infection spreads easily through contact with saliva or contaminated surfaces. Most cases resolve within a week.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Maintain hygiene and avoid close contact with others.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="hailey hailey inherited blisters erosions skin folds friction" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Hailey-Hailey Disease</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Hailey-Hailey disease is a rare inherited skin disorder that causes painful blisters and erosions in areas where skin rubs together. Symptoms include cracking, redness, and oozing in skin folds such as the neck, armpits, and groin. Heat, friction, and sweating can worsen symptoms.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Keep skin dry and consult a dermatologist for treatment.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="impetigo bacterial contagious children yellow crusts sores nose" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Impetigo</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Impetigo is a contagious bacterial skin infection commonly seen in children. It produces red sores that break open and form yellow crusts, usually around the nose and mouth. The infection spreads easily through direct contact or shared items. Antibiotic treatment is typically effective.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Maintain hygiene and seek antibiotic treatment.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="larva migrans hookworm parasitic barefoot soil tracks" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Larva Migrans</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Cutaneous larva migrans is a parasitic infection caused by hookworm larvae entering the skin. It produces red, winding tracks that move over time and cause intense itching. Infection usually occurs from walking barefoot on contaminated soil or sand.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Avoid walking barefoot in contaminated soil.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="lichen planus inflammatory purple bumps flat nails mouth" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Lichen Planus</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Lichen planus is an inflammatory skin condition that affects the skin, nails, and sometimes the mouth. It usually appears as small, flat-topped, purple or reddish bumps that may be itchy. The exact cause is not fully understood, but it is believed to involve an immune system reaction attacking skin cells.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Avoid scratching and consult a dermatologist.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="measles viral contagious fever red rash cough" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Measles</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Measles is a highly contagious viral infection characterized by fever, cough, and a widespread red rash. The rash usually begins on the face and spreads downward. Complications may include pneumonia or ear infections. Vaccination is the most effective prevention.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek medical advice and maintain hydration.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="poison ivy urushiol allergic rash itching blistering plant" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Poison Ivy Dermatitis</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Poison ivy dermatitis is an allergic skin reaction caused by contact with urushiol oil found in poison ivy plants. Symptoms include redness, itching, swelling, and blistering that may appear hours or days after exposure. Washing exposed skin quickly can reduce severity.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Avoid contact and wash exposed skin.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="porokeratosis actinic sun scaly dry raised edges arms" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Porokeratosis Actinic</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Actinic porokeratosis is associated with abnormal skin cell growth due to long-term sun exposure. It appears as dry, scaly patches with raised edges, usually on sun-exposed areas such as arms and legs. The lesions may persist long-term and rarely carry a small risk of cancerous transformation.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Use sunscreen and seek dermatologist advice.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="psoriasis autoimmune chronic silvery scales red thick itching" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Psoriasis</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Psoriasis is a chronic autoimmune skin condition that causes rapid buildup of skin cells, resulting in thick, red patches covered with silvery scales. It is influenced by genetic factors and immune system dysfunction. Flare-ups are often triggered by stress, infections, or cold weather.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Consult a dermatologist.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="scabies mites burrow itch night fingers contagious" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Scabies</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Scabies is a contagious skin infestation caused by microscopic mites that burrow into the skin. It leads to intense itching and small rash-like bumps, especially in skin folds and between fingers. Symptoms often worsen at night due to mite activity. Treatment is necessary to eliminate mites and prevent spread.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek medical treatment promptly.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="tinea ringworm fungal circular red scalp nails antifungal" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Tinea (Ringworm)</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Tinea, commonly called ringworm, is a fungal infection affecting the skin, scalp, or nails. It typically appears as circular red patches with raised edges and central clearing. The infection spreads through direct contact with infected people, animals, or surfaces. Antifungal medications are usually effective.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Use antifungal creams.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="tungiasis sand flea parasitic tropical feet nodules" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Tungiasis</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Tungiasis is a parasitic skin infection caused by sand fleas that burrow into the skin, usually on the feet. It produces small nodules that may become painful, swollen, or infected. The condition is more common in tropical environments and areas with poor sanitation. Early removal of the parasite prevents complications.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Avoid barefoot exposure.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="Medium" data-name="urticaria hives allergic welts itchy raised swelling" onclick="toggleCard(this)">
+                <div class="card-strip Medium"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Urticaria (Hives)</h3>
+                        <span class="severity-badge Medium">Medium</span>
+                    </div>
+                    <p class="card-desc">Urticaria, commonly known as hives, is a skin reaction characterized by raised, itchy welts that vary in size and shape. It is often triggered by allergic reactions, infections, medications, or stress. Symptoms may appear suddenly and resolve within hours or days. Severe cases may involve swelling of deeper tissues.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Avoid allergens.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon Medium"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── HIGH severity ───────────────────────────────────── -->
+
+            <div class="disease-card" data-severity="High" data-name="basal cell carcinoma cancer UV sun pearly bump sore" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Basal Cell Carcinoma</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Basal cell carcinoma is the most common form of skin cancer, mainly caused by prolonged exposure to ultraviolet radiation. It often appears as a pearly bump, non-healing sore, or flat scar-like lesion. Although it usually grows slowly, untreated lesions can damage nearby tissues. Early detection significantly improves outcomes.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek medical attention promptly. Avoid sun exposure and use sunscreen regularly.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="bullous blisters autoimmune fluid fragile skin pain" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Bullous Disease</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Bullous diseases are conditions characterized by large fluid-filled blisters caused by autoimmune reactions, infections, or medications. The immune system may attack skin layers, leading to fragile skin that forms blisters easily. Symptoms include blistering, pain, redness, and open sores that may become infected if untreated.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Consult a dermatologist immediately for proper diagnosis and treatment.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="leprosy borderline nerve skin patches numb disability" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Leprosy — Borderline</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Borderline leprosy is an intermediate form of leprosy that affects both skin and nerves. It causes multiple skin patches that may be numb or discolored. Symptoms include loss of sensation and muscle weakness due to nerve damage. Early treatment helps prevent disability.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Immediate medical treatment is necessary.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="leprosy lepromatous severe nodules thickened nerve deformity" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Leprosy — Lepromatous</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Lepromatous leprosy is a severe form of leprosy characterized by widespread skin lesions and nerve damage. It often causes nodules, thickened skin, and loss of sensation in affected areas. Without treatment, it can lead to permanent nerve damage and deformities.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek urgent medical care.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="leprosy tuberculoid localized nerve antibiotic specialist" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Leprosy — Tuberculoid</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Tuberculoid leprosy is a milder form of leprosy that causes localized skin lesions and nerve involvement. Affected areas may become numb and lose sensation. Early detection and antibiotic therapy can effectively control the disease and prevent nerve damage.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Consult a specialist immediately.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="lupus autoimmune butterfly rash face sunlight fatigue joints" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Lupus</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Lupus is an autoimmune disease that causes inflammation in skin and other organs. Skin symptoms often include a butterfly-shaped rash on the face and increased sensitivity to sunlight. Other symptoms may include fatigue and joint pain. Early diagnosis is critical for management.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek medical diagnosis immediately.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="melanoma skin cancer mole irregular bleeding aggressive urgent" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Melanoma</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Melanoma is an aggressive form of skin cancer that develops from melanocytes. It often appears as an irregular mole with uneven color and borders. Rapid growth or bleeding is a warning sign. Early detection greatly improves survival and treatment success rates.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek urgent medical evaluation.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="monkeypox viral orthopoxvirus fever rash scabs lymph nodes" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Monkeypox</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Monkeypox is a viral infection caused by an orthopoxvirus and spreads through close contact with infected individuals or contaminated materials. Early symptoms include fever, fatigue, muscle aches, and swollen lymph nodes, followed by a rash that develops into fluid-filled lesions that eventually form scabs.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek immediate medical care.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="systemic disease internal organ rash discoloration ulcer autoimmune" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Systemic Disease</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Systemic diseases may produce visible skin symptoms that reflect underlying medical conditions affecting internal organs. Examples include autoimmune disorders, infections, or metabolic diseases. Symptoms may include rashes, discoloration, ulcers, or swelling. Identifying the underlying condition is essential for proper treatment.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek comprehensive medical evaluation.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disease-card" data-severity="High" data-name="vasculitis blood vessels inflammation purple ulcers autoimmune organ" onclick="toggleCard(this)">
+                <div class="card-strip High"></div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <h3 class="card-title">Vasculitis</h3>
+                        <span class="severity-badge High">High</span>
+                    </div>
+                    <p class="card-desc">Vasculitis involves inflammation of blood vessels, which can reduce blood flow to tissues. Skin symptoms may include purple spots, ulcers, or painful nodules caused by vessel damage. Causes may include autoimmune disorders, infections, or medication reactions. Severe cases require urgent medical care due to possible organ involvement.</p>
+                    <div class="card-rec">
+                        <strong>Recommendation</strong>
+                        Seek urgent medical care.
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-toggle">Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9" /></svg></span>
+                        <div class="card-type-icon High"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty state -->
+            <div class="empty-state" id="emptyState">
+                <svg fill="none" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <h3>No conditions found</h3>
+                <p>Try a different search term or filter.</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // ── Toggle expand / collapse ─────────────────────────────
+        function toggleCard(card) {
+            card.classList.toggle('expanded');
+            const toggle = card.querySelector('.card-toggle');
+            if (toggle) {
+                toggle.innerHTML = card.classList.contains('expanded')
+                    ? 'Show less <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg>'
+                    : 'Read more <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="6 9 12 15 18 9"/></svg>';
+            }
+        }
+
+        // ── Filter + Search logic ────────────────────────────────
+        const cards       = document.querySelectorAll('.disease-card');
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns  = document.querySelectorAll('.filter-pill');
+        const resultsCount = document.getElementById('resultsCount');
+        const emptyState  = document.getElementById('emptyState');
+
+        let activeFilter = 'all';
+
+        function applyFilters() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visible = 0;
+
+            cards.forEach(card => {
+                if (card.id === 'emptyState') return;
+                const sev   = card.dataset.severity;
+                const name  = card.dataset.name || '';
+                const title = card.querySelector('.card-title')?.textContent.toLowerCase() || '';
+                const desc  = card.querySelector('.card-desc')?.textContent.toLowerCase() || '';
+
+                const matchFilter = activeFilter === 'all' || sev === activeFilter;
+                const matchSearch = !query || title.includes(query) || desc.includes(query) || name.includes(query);
+
+                if (matchFilter && matchSearch) {
+                    card.classList.remove('hidden');
+                    visible++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            resultsCount.textContent = visible + (visible === 1 ? ' condition' : ' conditions');
+            emptyState.classList.toggle('visible', visible === 0);
+        }
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                applyFilters();
+            });
+        });
+
+        searchInput.addEventListener('input', applyFilters);
+
+        // Staggered animation on load
+        cards.forEach((card, i) => {
+            card.style.animationDelay = (i * 0.04) + 's';
+        });
+    </script>
+}

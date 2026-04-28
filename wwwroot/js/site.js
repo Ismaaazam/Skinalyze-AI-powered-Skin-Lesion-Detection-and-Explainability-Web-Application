@@ -1,4 +1,26 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿// site.js — showToast utility
 
-// Write your JavaScript code.
+function showToast(message, type = "info") {
+    const container = document.getElementById("toastContainer");
+    if (!container) return;
+
+    const toast = document.createElement("div");
+    // Change "toast" to "sk-toast"
+    toast.className = "sk-toast" + (type === "error" ? " error" : type === "success" ? " success" : "");
+    toast.innerHTML = `
+        <span>${message}</span>
+        <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+    `;
+    container.appendChild(toast);
+
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+        toast.style.animation = "toastOut 0.3s ease forwards";
+        setTimeout(() => toast.remove(), 300);
+    }, 5000);
+}
+
+function dismiss(toast) {
+    toast.style.animation = "toastOut 0.25s ease forwards";
+    setTimeout(() => toast.remove(), 250);
+}

@@ -1,0 +1,482 @@
+﻿/* ============================================================
+   ReportForm.css  —  Skinalyze
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700&display=swap');
+
+:root {
+    --green: #0D5F4A;
+    --green-dk: #0a4a39;
+    --green-lt: #eaf5ef;
+    --text: #0a1a14;
+    --muted: #4a5a55;
+    --border: #e4ede8;
+    --white: #ffffff;
+    --error: #c62828;
+    --error-lt: #fde8e8;
+    --success: #2e7d32;
+    --success-lt: #e8f5e9;
+}
+
+/* ── Page layout ─────────────────────────────────────────── */
+.report-page {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    min-height: calc(100vh - 72px);
+}
+
+/* ══════════════════════════════════════════════════════════
+   LEFT DECO PANEL
+   ══════════════════════════════════════════════════════════ */
+.report-deco {
+    background: linear-gradient(160deg, #0D5F4A 0%, #0a4a39 55%, #1a1a2e 100%);
+    padding: 56px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.report-deco-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* Brand */
+.deco-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.deco-logo-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+    .deco-logo-icon svg {
+        width: 20px;
+        height: 20px;
+        stroke: #fff;
+    }
+
+.deco-logo-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+}
+
+.deco-heading {
+    font-family: 'Sora', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin: 0 0 16px;
+}
+
+.deco-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+    margin: 0 0 36px;
+}
+
+/* Checklist */
+.deco-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+    .deco-checklist li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        color: rgba(255,255,255,0.85);
+        font-weight: 500;
+    }
+
+        .deco-checklist li svg {
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.18);
+            border-radius: 50%;
+            padding: 3px;
+            width: 22px;
+            height: 22px;
+            stroke: #a7f3d0;
+        }
+
+/* Blobs */
+.deco-blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+.deco-blob-1 {
+    width: 300px;
+    height: 300px;
+    background: #34d399;
+    bottom: -80px;
+    right: -80px;
+}
+
+.deco-blob-2 {
+    width: 180px;
+    height: 180px;
+    background: #D6186A;
+    top: 60px;
+    right: 20px;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RIGHT FORM PANEL
+   ══════════════════════════════════════════════════════════ */
+.report-form-panel {
+    background: linear-gradient(135deg, #f7fdfb 0%, #fafbff 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 40px;
+    overflow-y: auto;
+}
+
+.report-form-card {
+    width: 100%;
+    max-width: 560px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 36px 36px 32px;
+    box-shadow: 0 6px 28px rgba(13, 95, 74, 0.08);
+    animation: cardIn 0.5s ease both;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Card header ─────────────────────────────────────────── */
+.rfc-header {
+    margin-bottom: 28px;
+}
+
+    .rfc-header h1 {
+        font-family: 'Sora', sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0 0 6px;
+    }
+
+    .rfc-header p {
+        font-size: 13.5px;
+        color: var(--muted);
+        margin: 0;
+    }
+
+/* ── Row layout ──────────────────────────────────────────── */
+.rf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* ── Individual field ────────────────────────────────────── */
+.rf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+    animation: fieldIn 0.4s ease both;
+}
+
+    .rf-field:nth-child(1) {
+        animation-delay: 0.05s;
+    }
+
+    .rf-field:nth-child(2) {
+        animation-delay: 0.10s;
+    }
+
+    .rf-field:nth-child(3) {
+        animation-delay: 0.15s;
+    }
+
+    .rf-field:nth-child(4) {
+        animation-delay: 0.20s;
+    }
+
+.rf-field-full {
+    animation-delay: 0.25s !important;
+}
+
+@keyframes fieldIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Remove bottom margin when inside rf-row (row handles gap) */
+.rf-row .rf-field {
+    margin-bottom: 0;
+}
+
+.rf-field-full {
+    margin-bottom: 16px;
+}
+
+/* Label */
+.rf-field label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Input wrap — contains icon + input */
+.rf-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.rf-icon {
+    position: absolute;
+    left: 13px;
+    width: 16px;
+    height: 16px;
+    stroke: #aabab5;
+    pointer-events: none;
+    transition: stroke 0.2s;
+    flex-shrink: 0;
+}
+
+.rf-icon-top {
+    top: 13px;
+    align-self: flex-start;
+}
+
+/* Inputs */
+.rf-input-wrap input,
+.rf-input-wrap textarea {
+    width: 100%;
+    padding: 11px 14px 11px 38px;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: #fafbfa;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    resize: none;
+}
+
+.rf-input-wrap textarea {
+    padding-top: 11px;
+    line-height: 1.6;
+}
+
+    /* Focus */
+    .rf-input-wrap input:focus,
+    .rf-input-wrap textarea:focus {
+        border-color: var(--green);
+        background: var(--white);
+        box-shadow: 0 0 0 3px rgba(13, 95, 74, 0.10);
+    }
+
+        .rf-input-wrap input:focus ~ .rf-icon,
+        .rf-input-wrap textarea:focus ~ .rf-icon,
+        .rf-input-wrap:focus-within .rf-icon {
+            stroke: var(--green);
+        }
+
+/* Valid state */
+.rf-valid .rf-input-wrap input,
+.rf-valid .rf-input-wrap textarea {
+    border-color: #81c784;
+    background: var(--success-lt);
+}
+
+/* Invalid state */
+.rf-invalid .rf-input-wrap input,
+.rf-invalid .rf-input-wrap textarea {
+    border-color: var(--error);
+    background: var(--error-lt);
+    animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    60% {
+        transform: translateX(5px);
+    }
+}
+
+/* Error text */
+.rf-error {
+    font-size: 12px;
+    color: var(--error);
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 16px;
+    animation: errIn 0.2s ease;
+}
+
+@keyframes errIn {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Submit row ──────────────────────────────────────────── */
+.rf-submit-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.rf-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--green);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 13px 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px rgba(13, 95, 74, 0.28);
+}
+
+    .rf-submit-btn:hover {
+        background: var(--green-dk);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(13, 95, 74, 0.36);
+    }
+
+    .rf-submit-btn:active {
+        transform: scale(0.97);
+    }
+
+    .rf-submit-btn:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+.rf-back-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+    .rf-back-link:hover {
+        color: var(--green);
+        text-decoration: none;
+    }
+
+/* ── Spin keyframe ───────────────────────────────────────── */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+    .report-page {
+        grid-template-columns: 1fr;
+    }
+
+    .report-deco {
+        padding: 32px 28px 36px;
+        min-height: auto;
+    }
+
+    .deco-heading {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    .report-form-panel {
+        padding: 24px 16px;
+    }
+
+    .report-form-card {
+        padding: 24px 20px;
+    }
+
+    .rf-row {
+        grid-template-columns: 1fr;
+    }
+
+    .rf-submit-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rf-submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

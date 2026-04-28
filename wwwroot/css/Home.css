@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: space-between;
     min-height: calc(100vh - 68px);
-    padding: 0 80px;
+    padding: 40px 40px 40px 160px;
     gap: 60px;
     background: #ffffff;
     max-width: 1400px;
@@ -160,7 +160,7 @@
 
 .cell-tl {
     background: #d8ece5;
-    padding: 6px;
+    padding: 8px;
     border-radius: 16px;
 }
 
@@ -177,7 +177,7 @@
 
 .cell-br {
     background: #0D5F4A;
-    padding: 6px;
+    padding: 8px;
     border-radius: 16px;
 }
 
@@ -189,7 +189,7 @@
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 1024px) {
     .home-hero {
-        padding: 40px 40px;
+        padding: 40px 40px 40px 160px;
         gap: 40px;
     }
 
@@ -207,6 +207,7 @@
 
     .hero-left {
         max-width: 100%;
+        
     }
 
     .hero-heading {
@@ -224,9 +225,9 @@
 
     #dnaBgCanvas {
         opacity: 0.55;
-        top: -80px;
+        top: -110px;
         left: -70px;
         width: 240px;
-        height: 640px;
+        height: 40px;
     }
 }
