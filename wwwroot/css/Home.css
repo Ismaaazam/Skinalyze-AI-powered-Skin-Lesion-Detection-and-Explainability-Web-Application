@@ -24,8 +24,8 @@
    ══════════════════════════════════════════════════════════════ */
 #dnaBgCanvas {
     position: absolute;
-    top: -160px; /* negative → rises behind the navbar */
-    left: -38px; /* negative → tip bleeds to screen edge */
+    top: -190px; /* negative → rises behind the navbar */
+    left: -30px; /* negative → tip bleeds to screen edge */
     transform: rotate(42deg);
     transform-origin: top left;
     width: 340px;

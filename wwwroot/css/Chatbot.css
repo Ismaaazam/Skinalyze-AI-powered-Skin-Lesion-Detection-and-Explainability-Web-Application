@@ -382,7 +382,7 @@
 
     .chat-footer input {
         flex: 1;
-        padding: 10px 14px;
+        padding: 10px 12px;
         border-radius: 50px;
         border: 1.5px solid var(--chat-border);
         font-family: 'DM Sans', sans-serif;
@@ -400,9 +400,10 @@
         }
 
     .chat-footer button#sendChat {
-        width: 38px;
+        width: 90px;
         height: 38px;
-        border-radius: 50%;
+        border-radius: 50px;
+        padding: 10px 22px;
         border: none;
         background: var(--chat-green);
         color: #ffffff;

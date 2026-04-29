@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="~/css/Upload.css" />
 }
 
-
 @await Html.PartialAsync("_ChatbotPartial")
 
 <div class="app-wrapper" id="appWrapper">
@@ -142,6 +141,36 @@
                     <p class="fw-semibold">Would you like to record these results in a report?</p>
                     <a asp-action="ReportForm" class="btn-report-pill">Generate Report</a>
                 </div>
+
+                <div class="mt-4 text-center">
+                    <p class="fw-semibold mb-2">
+                        Please add your suggestion as a dermatologist to the above result.
+                    </p>
+                    <button id="showSuggestionBtn" class="btn-upload-pill">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                             stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+                            <path d="M12 20h9" />
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                        </svg>
+                        Insert Feedback
+                    </button>
+                </div>
+
+                <div id="suggestionBox" class="mt-3" style="display:none;">
+                    <form asp-action="SaveDermatologistSuggestion" method="post">
+                        <div class="form-group">
+                            <textarea name="SuggestionText" class="form-control" rows="4"
+                                  placeholder="Enter your suggestion here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-upload-pill mt-2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                 stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            Submit Response
+                        </button>
+                    </form>
+                </div>
             }
 
         </div>
@@ -151,7 +180,7 @@
 
  @section Scripts {
     <script src="~/js/Upload.js" asp-append-version="true"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>pl mg9g 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             initChatbot("overlay");
@@ -176,5 +205,38 @@
                 <text>showToast("@TempData["ToastSuccess"]", "success");</text>
             }
         });
+        document
+                .getElementById("showSuggestionBtn")
+                ?.addEventListener("click", function () {
+
+                    var box =
+                        document.getElementById("suggestionBox");
+
+                    if (box.style.display === "none") {
+
+                        box.style.display = "block";
+
+                        // NEW: Scroll to textarea section
+                        box.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start"
+                        });
+
+                        // NEW: Focus inside textarea
+                        var textarea =
+                            box.querySelector("textarea");
+
+                        if (textarea) {
+
+                            setTimeout(function () {
+
+                                textarea.focus();
+
+                            }, 400);
+
+                        }
+
+                    }
+                });
     </script>
 }

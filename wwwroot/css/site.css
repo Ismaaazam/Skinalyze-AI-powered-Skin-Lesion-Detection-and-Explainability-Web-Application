@@ -77,12 +77,12 @@
 
     /* Error variant */
     .toast.error {
-        background: #c62828;
+        background: #7e0a0a;
     }
 
     /* Success variant */
 .sk-toast.success {
-    background: #2e7d32;
+    background: #0a4a39;
 }
 
 /* Close button */

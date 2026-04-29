@@ -144,8 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!file) {
             e.preventDefault();
-            showFieldError("Please select an image before uploading.");
-            showToast("No image selected. Please choose a file first.", "error");
+            showFieldError("Please select an image before uploading.");         
             return;
         }
 

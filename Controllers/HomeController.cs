@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using QuestPDF.Fluent;
 using Skinalyze.ViewModels;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Skinalyze.Controllers
 {
@@ -492,6 +493,87 @@ namespace Skinalyze.Controllers
                 return Content($"An error occurred while generating the report: {ex.Message}");
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SaveDermatologistSuggestion(string SuggestionText)
+        {
+            try
+            {
+                var prediction =
+                    HttpContext.Session.GetString("Prediction");
+
+                var confidence =
+                    HttpContext.Session.GetString("Confidence");
+
+                var severity =
+                    HttpContext.Session.GetString("Severity");
+
+                var description =
+                    HttpContext.Session.GetString("Description");
+
+                var recommendation =
+                    HttpContext.Session.GetString("Recommendation");
+
+                var data = new
+                {
+                    prediction,
+                    confidence,
+                    severity,
+                    description,
+                    recommendation,
+                    dermatologist_suggestion = SuggestionText
+                };
+
+                var json =
+                    JsonConvert.SerializeObject(data);
+
+                var content =
+                    new StringContent(
+                        json,
+                        Encoding.UTF8,
+                        "application/json");
+
+                var client = new HttpClient();
+
+                string apiKey = "sb_publishable_tukOXXJtisIrIYYOjnjuJA_8aWfpRF9";
+
+                client.DefaultRequestHeaders.Add("apikey", apiKey);
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + apiKey);
+                client.DefaultRequestHeaders.Add("Prefer", "return=representation");
+
+                var response =
+                    await client.PostAsync(
+                        "https://nyumjjsfxmxylkmhlulw.supabase.co/rest/v1/dermatologist_feedback",
+                        content);
+
+                var responseText =
+                    await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    TempData["ToastSuccess"] =
+                        "Your feedback has been noted down.";
+                }
+                else
+                {
+
+                    TempData["ToastError"] =
+                        "Failed to save feedback: " +
+                        responseText;
+                }
+
+                return RedirectToAction("Upload");
+            }
+            catch (Exception ex)
+            {
+                TempData["ToastError"] =
+                    "Exception: " + ex.Message;
+
+                return RedirectToAction("Upload");
+            }
+        }
+
         public IActionResult Insights()
         {
             return View();
