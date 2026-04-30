@@ -37,7 +37,6 @@ namespace Skinalyze.Controllers
         {
             try
             {
-                // ===== FILE EXIST CHECK =====
                 if (model.ImageFile == null || model.ImageFile.Length == 0)
                 {
                     ModelState.AddModelError("",
@@ -45,7 +44,6 @@ namespace Skinalyze.Controllers
                     return View(model);
                 }
 
-                // ===== EXTENSION VALIDATION =====
                 var allowedExtensions =
                     new[] { ".png", ".jpg", ".jpeg", ".jfif" };
 
@@ -60,7 +58,6 @@ namespace Skinalyze.Controllers
                     return View(model);
                 }
 
-                // ===== FILE SIZE VALIDATION =====
                 long maxFileSize = 10 * 1024 * 1024; // 10MB
 
                 if (model.ImageFile.Length > maxFileSize)
@@ -126,7 +123,6 @@ namespace Skinalyze.Controllers
                     }
 
 
-                    // ===== ASSIGN RESULTS =====
                     model.Prediction =
                         result.prediction;
 
@@ -164,7 +160,6 @@ namespace Skinalyze.Controllers
                 {
                     TempData["ToastError"] = "Invalid image detected. Please upload a clear skin lesion image.";
                     model.Prediction = null;
-                    // Store the low-confidence model back so the view stays clean
                     return RedirectToAction("Upload");
                 }
 
@@ -209,7 +204,6 @@ namespace Skinalyze.Controllers
                     model.ActiveZones);
 
 
-                // ===== SAVE FILE LOCALLY =====
                 var uploadsFolder =
                     Path.Combine(
                         Directory.GetCurrentDirectory(),
@@ -261,19 +255,9 @@ namespace Skinalyze.Controllers
             return View();
         }
 
-
-        // =====================================================================
-        //  HomeController.cs  —  Skinalyze
-        //  Replace only the GeneratePdf action with this version.
-        //  Everything else (constructor, Index, Upload GET/POST, etc.) stays the same.
-        // =====================================================================
-
-        // PASTE THIS ACTION to replace the existing GeneratePdf action:
-
         [HttpPost]
         public IActionResult GeneratePdf(ReportViewModel model)
         {
-            // ✅ Guard: if model binding failed entirely, redirect gracefully
             if (model == null)
             {
                 return RedirectToAction("ReportForm");
@@ -349,7 +333,7 @@ namespace Skinalyze.Controllers
                                 }
 
                                 AddRow("Full Name", $"{model.FirstName} {model.LastName}");
-                                AddRow("Age", model.Age.HasValue ? model.Age.Value.ToString() : "—"); // ✅ nullable-safe
+                                AddRow("Age", model.Age.HasValue ? model.Age.Value.ToString() : "—");
                                 AddRow("Occupation", model.Occupation ?? "—");
                                 AddRow("Family History", model.FamilyHistory ?? "—");
                             });

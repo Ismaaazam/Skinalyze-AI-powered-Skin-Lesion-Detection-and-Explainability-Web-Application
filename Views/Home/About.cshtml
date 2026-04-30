@@ -19,7 +19,7 @@
                 Skinalyze is a Final Year Project developed at Bahria University Karachi Campus.
                 It combines deep-learning-based lesion detection with intelligent medical assistance
                 to enhance user awareness, support early intervention, and provide accessible
-                dermatology guidance — directly through your browser.
+                dermatology guidance, directly through your browser.
             </p>
             <a class="about-cta" asp-controller="Home" asp-action="Upload">Try it Now &rarr;</a>
         </div>
@@ -35,23 +35,23 @@
      ═══════════════════════════════════════════════ -->
 <section class="about-stats">
     <div class="stat-item">
-        <span class="stat-number">38</span>
-        <span class="stat-label">skin lesion types detected by Skinalyze's AI model</span>
+        <span class="stat-number">39</span>
+        <span class="stat-label">Skin lesion types detected by Skinalyze's AI model</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
-        <span class="stat-number">85–94%</span>
-        <span class="stat-label">accuracy of our deep-learning models on benchmark datasets</span>
+        <span class="stat-number">84–86%</span>
+        <span class="stat-label">Accuracy of our deep-learning models on benchmark dataset</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
         <span class="stat-number">Grad-CAM</span>
-        <span class="stat-label">explainability heatmaps showing exactly what the AI focused on</span>
+        <span class="stat-label">Explainability, heatmaps showing exactly what the AI focused on</span>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
-        <span class="stat-number">Free</span>
-        <span class="stat-label">web-based access — no specialist appointment required</span>
+        <span class="stat-number">Easy access</span>
+        <span class="stat-label">Web-based access, no special training required</span>
     </div>
 </section>
 
@@ -81,7 +81,7 @@
             <ul class="about-list">
                 <li>Automated skin lesion classification from uploaded images</li>
                 <li>Grad-CAM heatmaps highlighting the AI's decision regions</li>
-                <li>RAG-based chatbot for contextual medical follow-up</li>
+                <li>Domain specific chatbot for contextual medical follow-up</li>
                 <li>Downloadable structured PDF diagnostic reports</li>
                 <li>Severity ratings and actionable medical recommendations</li>
             </ul>
@@ -98,16 +98,16 @@
             <span class="section-tag tag-pink">The Problem</span>
             <h2>Why Existing Solutions Fall Short</h2>
             <p>
-                Skin lesion diagnosis today depends almost entirely on trained dermatologists —
+                Skin lesion diagnosis today depends almost entirely on trained dermatologists,
                 and they are in short supply, particularly in rural and underserved regions.
                 Existing AI systems and dermatology applications face serious limitations that
                 reduce clinical trust and limit their real-world usefulness.
             </p>
             <ul class="about-list">
                 <li>Black-box decisions with no visual explanation of predictions</li>
-                <li>No integrated medical recommendations — only classification scores</li>
+                <li>No integrated medical recommendations, only classification scores</li>
                 <li>No conversational engine for patient follow-up questions</li>
-                <li>Mobile-only or research-only — not universally accessible</li>
+                <li>Mobile-only or research-only, not universally accessible</li>
                 <li>No structured reporting for patients or clinicians</li>
                 <li>Poor scalability when moving from research to real-world deployment</li>
             </ul>
@@ -128,7 +128,7 @@
             <span class="section-tag tag-green">How It Works</span>
             <h2>A Six-Stage AI Pipeline</h2>
             <p>
-                Skinalyze processes your image through a multi-stage pipeline — from cloud-based
+                Skinalyze processes your image through a multi-stage pipeline, from cloud-based
                 data acquisition through to explainable results and medical chatbot support.
             </p>
         </div>
@@ -147,27 +147,27 @@
         <div class="step-card">
             <div class="step-icon" style="background:#f0ebff; color:#4B3FA0;">02</div>
             <h3>Preprocessing Pipeline</h3>
-            <p>The image is resized, normalised, denoised, contrast-enhanced, and automatically augmented — ensuring robust inference even with real-world image variation.</p>
+            <p>The image is resized, normalised, denoised, contrast-enhanced, and automatically augmented, ensuring robust inference even with real-world image variation.</p>
         </div>
         <div class="step-card">
             <div class="step-icon" style="background:#fde8ef; color:#D6186A;">03</div>
             <h3>Detection &amp; Classification</h3>
-            <p>CNN architectures — EfficientNet, MobileNetV2, and InceptionV3 — alongside optional Vision Transformers classify the lesion type with a softmax confidence score.</p>
+            <p>CNN architecture; MobileNetV2 alongside CBAM classify the lesion type with a softmax confidence score.</p>
         </div>
         <div class="step-card">
             <div class="step-icon" style="background:#fce8ef; color:#850E35;">04</div>
             <h3>Grad-CAM Explainability</h3>
-            <p>A heatmap is generated highlighting the exact regions of the image that influenced the model's prediction — making the AI decision visible and trustworthy.</p>
+            <p>A heatmap is generated highlighting the exact regions of the image that influenced the model's prediction, making the AI decision visible and trustworthy.</p>
         </div>
         <div class="step-card">
             <div class="step-icon" style="background:#eaf5ef; color:#0D5F4A;">05</div>
-            <h3>RAG Chatbot Support</h3>
-            <p>A Retrieval-Augmented Generation chatbot queries a vector database of medical documents plus internet sources to answer your skin-related follow-up questions.</p>
+            <h3>Domain Specific Chatbot Support</h3>
+            <p>A retrieval augmented generation chatbot queries a stored knowledge of medical documents plus internet sources to answer your skin-related follow-up questions.</p>
         </div>
         <div class="step-card">
             <div class="step-icon" style="background:#f0ebff; color:#4B3FA0;">06</div>
             <h3>Report Generation</h3>
-            <p>The .NET backend compiles your results — prediction, confidence score, severity, heatmap, and patient details — into a downloadable structured PDF report.</p>
+            <p>The .NET backend compiles your results, prediction, confidence score, severity, heatmap, and patient details, into a downloadable structured PDF report.</p>
         </div>
     </div>
 </section>
@@ -180,7 +180,7 @@
         <div class="features-header">
             <span class="section-tag tag-purple">Features</span>
             <h2>Everything You Need in One Place</h2>
-            <p>Built for patients seeking early answers and clinicians needing decision support — all free, web-based, and requiring no specialist on your end.</p>
+            <p>Built for clinicians needing decision support, all free, web-based, time saving. Perhaps for patients seeking early answers and requiring no specialty on their end.</p>
         </div>
 
         <div class="features-grid">
@@ -189,42 +189,42 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" /></svg>
                 </div>
                 <h3>Real-Time Lesion Detection</h3>
-                <p>Instant classification of 38 skin lesion types using EfficientNet, MobileNetV2, and InceptionV3 — trained on cloud-hosted dermatological datasets.</p>
+                <p>Instant classification of 39 skin lesion types using MobileNetV2, and Enhancment model, trained on cloud-hosted dermatological dataset.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="border-color:#4B3FA0; color:#4B3FA0;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg>
                 </div>
                 <h3>Grad-CAM Explainability</h3>
-                <p>Visual heatmaps highlight the exact regions that influenced the AI decision — transparent, clinician-friendly, and trustworthy explainable AI.</p>
+                <p>Visual heatmaps highlight the exact regions that influenced the AI decision, transparent, clinician-friendly, and trustworthy explainable AI.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="border-color:#D6186A; color:#D6186A;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
                 </div>
                 <h3>RAG Medical Chatbot</h3>
-                <p>Ask follow-up questions and get contextual, medically relevant guidance tailored to your detected lesion type — powered by LangChain, FAISS, and HuggingFace models. Restricted to dermatology and skincare domains.</p>
+                <p>Ask follow-up questions and get contextual, medically relevant guidance tailored to your question. Restricted to dermatology and skincare domains.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="border-color:#850E35; color:#850E35;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
                 </div>
                 <h3>Structured PDF Reports</h3>
-                <p>Download a complete diagnostic report including patient info, lesion type, confidence score, severity level, and Grad-CAM visualisation — ready to share with your dermatologist.</p>
+                <p>Download a complete diagnostic report including patient info, lesion type, confidence score, severity level, and Grad-CAM visualisation, ready to share with in real-world.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="border-color:#0D5F4A; color:#0D5F4A;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></svg>
                 </div>
                 <h3>Severity &amp; Medical Guidance</h3>
-                <p>Receive a severity rating alongside actionable care instructions and potential treatment suggestions based on the detected lesion type — including when to seek urgent care.</p>
+                <p>Receive a severity rating alongside actionable care instructions and potential treatment suggestions based on the detected lesion type, including when to seek urgent care.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="border-color:#4B3FA0; color:#4B3FA0;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
                 </div>
                 <h3>Real-World Image Robustness</h3>
-                <p>Our preprocessing pipeline handles lighting variation, camera angle differences, and noise — ensuring the model performs reliably on real-world patient photos, not just benchmark images.</p>
+                <p>Our preprocessing pipeline handles lighting variation, camera angle differences, and noise, ensuring the model performs reliably on real-world patient photos, not just benchmark images.</p>
             </div>
         </div>
     </div>
