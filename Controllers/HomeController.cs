@@ -498,6 +498,9 @@ namespace Skinalyze.Controllers
                 var recommendation =
                     HttpContext.Session.GetString("Recommendation");
 
+                var uploadedImagePath =
+                    HttpContext.Session.GetString("UploadedImagePath");
+
                 var data = new
                 {
                     prediction,
@@ -505,7 +508,8 @@ namespace Skinalyze.Controllers
                     severity,
                     description,
                     recommendation,
-                    dermatologist_suggestion = SuggestionText
+                    dermatologist_suggestion = SuggestionText,
+                    lesion_image = uploadedImagePath
                 };
 
                 var json =
