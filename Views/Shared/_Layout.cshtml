@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Skinalyze</title>
 
+    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/Chatbot.css" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Skinalyze_favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Skinalyze_favicon.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="~/Skinalyze_favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Skinalyze_favicon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
@@ -35,7 +40,7 @@
             top: 0;
             z-index: 1000;
             width: 100%;
-            height: 72px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -175,7 +180,11 @@
 <body>
 
     <nav class="sk-navbar">
-        <a class="sk-brand" asp-area="" asp-controller="Home" asp-action="Index">Skinalyze</a>
+        <a class="sk-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="~/Skinalyze_favicon.png" alt="Skinalyze logo"
+                 style="width:100px; height:100px; object-fit:contain; margin-right:-20px; vertical-align:middle;" />
+            Skinalyze
+        </a>
 
         <ul class="sk-nav-links" id="skNav">
             <li><a asp-controller="Home" asp-action="About">About</a></li>
